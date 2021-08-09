@@ -1,0 +1,401 @@
+---
+title: "Template for writing scientific papers in R markdown"
+author: "Petr Keil, pkeil@seznam.cz, modified by Simon Knight, sjgknight@gmail.com"
+date: "11/1/2015, and March 2018"
+output:
+  pdf_document:
+    fig_caption: yes
+    keep_tex: yes
+    number_sections: yes
+  html_document:
+    fig_caption: yes
+    force_captions: yes
+    highlight: pygments
+    number_sections: yes
+    theme: cerulean
+    df_print: paged
+csl: mee.csl
+bibliography: references.bib
+---
+
+# Preliminaries
+Load packages.  If you don't have them installed already, you should uncomment (delete the #) the first 3 lines (starting 'install.packages', and 'devtools')
+
+Once you've done that, you can test the file by using the 'knit' button (just above this code chunk).
+
+Read more about R markdown and 'kniting' (rendering) documents https://rmarkdown.rstudio.com/authoring_quick_tour.html#overview 
+
+First, we'll load some packages
+```{r, echo=TRUE}
+#install.packages(c("tidyverse","flexdashboard","shiny","knitcitations","bibtex","psych","devtools","curl","reshape2","tidyr","lattice","kfigr","rwunderground","gganimate"))
+# devtools::install_github("cboettig/knitcitations")
+#devtools::install_github("benmarwick/wordcountaddin", type = "source", dependencies = TRUE)
+#go to Tools > Addins to select the wordcountaddin 
+
+  library(knitcitations); cleanbib()
+  cite_options(citation_format = "pandoc", check.entries=FALSE)
+  library(bibtex)
+  library(psych)
+  library(curl)
+  library(devtools)
+  library(dplyr)
+  library(ggplot2)
+  library(psych)
+  library(tidyr)
+  library(reshape2)
+  library(knitr)
+  library(lattice) #just to illustrate another histogram function
+  library(kfigr) #this lets us crossreference figures, etc. Read more about it https://github.com/mkoohafkan/kfigr/edit/master/vignettes/introduction.Rmd 
+
+  options("kfigr.prefix" = TRUE)
+  options("kfigr.link" = TRUE)
+
+```
+
+If you want to get your own weather data, you can uncomment the below
+```{r}
+#    library(rwunderground) #see https://github.com/ALShum/rwunderground - you'll need to register an api key
+#source("C:\\Users\\125295_admin\\Oxygen Enterprise\\Project data\\RProjects\\DSI\\rwunderground_key.R") #this loads my key without making it visible to you . That file just has one line: 
+  #rwunderground::set_api_key("mykey")
+```
+
+# Abstract (not necessary for AT2)
+
+_Please note that while we're keen for you to extend your technical skills, *a key concern of AT2 is how you communicate about and with data*, so *take caution not to get distracted by technical issues, and to focus on the criteria*. This  template mirrors the Word file to provide a structure for the report. Make sure that you read it closely, several times._
+
+# Word Length
+2800 words (excluding data excerpts and appendices, visualisations, and references) 
+To check this, you can either copy the html output to word, or use the addin Word Count Addin.  E.g.
+`wordcountaddin:::text_stats()`
+```{r}
+wordcountaddin:::text_stats()
+```
+
+# Using this template
+
+This is the suggested structure for your report. The basic structure is similar to the style of academic papers and, if followed, should ensure that everything you need to include is present. I have included the assessment criteria at the relevant places to remind you of what needs to be in the report. 
+
+You are free to vary the structure by renaming the sections, including other sections, or dropping ones that you don’t use. Keep in mind that the suggested structure is conventional (and therefore easy to follow), practical, and comprehensive. (Criterion 5: Professionally presented in a manner appropriate to the discipline.) If you do use this template, you will need to install R, RStudio, and the packages listed in the code block at the head of this document.
+
+Note: We have provided some sample code below, along with some text between angle brackets, < >. All of this should be replaced by your work.
+
+**_Please don't forget to include a title, name, student number, etc. on a covering sheet_**
+
+# Introduction
+
+\<a paragraph that gives an overview of what you’ve done\>
+
+## Citations
+
+You'll want to ensure that you connect what you did, and what you found, to the wider context of data science - including external sources of information (such as academic studies). You can build your reflection (criterion 4) through the paper like that. You'll need to work out how to cite...
+
+### Using DOIs
+Use:
+* `citet` if you want an inline citation, like Knight (2019) says
+* and `citep` if you want it in brackets (Knight, 2019)
+
+The relationship was first described by
+`r citet("10.1111/j.1461-0248.2005.00827.x")`. However, there are also opinions
+that the relationship is spurious `r citep("10.1111/j.2041-210x.2012.00264.x")`.
+
+### Using URLs
+Sometimes you can use the URL to cite: `r citep("https://theconversation.com/artificial-intelligence-holds-great-potential-for-both-students-and-teachers-but-only-if-used-wisely-81024")` although this service may be down at the moment.
+
+### Citing using a .bib file and citation manager
+
+If you create a .bib file, you can cite using [@Halpern_2006] - where your bib file has the 'key' (the bit after the @) with all the other detail. See the sample file!
+
+### Citing packages
+
+Packages you use have their own citation function! So here, we're going to cite R, and then knitcitations:
+
+We used R for our calculations `r citep(citation())`, and we used package `knitcitations` `r citep(citation("knitcitations"))` to make the bibliography.
+
+### Using footnotes - a good option especially if you get stuck with the others!
+
+If you're stuck we'll just accept footnotes for this assignment (which don't need the .bib or .csl or citep code). To insert them you just type `^[This is a footnote.]`, you'll get a hyperlinked number and at the end of your document the list is automatically created! Pretty useful right? ^[This is a footnote, see how it auto appears at the end of the doc.]
+
+
+### Putting it all together 
+
+The CSL file tells R how to format the citations. And the .bib file includes other references - you can generate one of those from Zotero/Mendeley/Endnote, etc. You can see the sample files with the download folder (and just use the CSL file as it is).
+
+### Including quotations
+> This is a block quotation, if you have a long quote from someone this is the best way to do it (but don't forget hte citation). This is a very long line that will still be quoted properly when it wraps. Oh boy let's keep writing to make sure this is long enough to actually wrap for everyone. Oh, you can *put* **Markdown** into a blockquote. 
+
+
+## Other formatting 
+
+You'll see that we can:
+
+ 1. Format things, e.g.
+ 
+  + *italicise*
+  + **or bold**
+  + **_or even bold italics_** (you can also have numbered sublists...)
+  
+    ...See the cheatsheet https://rmarkdown.rstudio.com/authoring_basics.html for more on this....to link to that by the way [I could have done this](https://rmarkdown.rstudio.com/authoring_basics.html)
+
+ 2. And add headings using a \# (but note, to get that to display properly I had to 'escape' it using a preceding backslash)
+ 3. And we can use citation, inline code, and charts
+ 4. All this means we can write a document, but we can also pull data in _live_ and  display it to the reader, who can also download this Rmd to see how we did it...it's pretty cool hey?
+
+But, just because it's in a different format, that doesn't mean you can get away with not following normal writing conventions. Writing should be in paragraphs, with correct spelling and grammar, and figures, etc. should be fully explained to the reader. For example, it's weird that I've just dumped Fig.1 image below, so in the methods, I'll make sure to explain them properly. (Note though, that this does illustrate how to include images - so if you do analysis outside R, you can still include figures, etc. without the code being R based)
+
+![Fig.1 A random logo image](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+
+# Description of process, or method
+
+\<this is where you give details about what you’ve been collecting and how much you data have; why you choose this data to collect; how you managed the quality and frequency of collection issues; what you did to anonymise or de-identify the data, and how you dealt with the storage and sharing of data within the group. Do not include a dump of all your data here. If you wish to include examples of data (and I think you should) then put these in an appendix to the report.  
+Criterion 1: Justifies a method to obtain data from multiple sources, for gaining insight into a chosen problem, including analysis of data quality issues in the individual and group data.\>
+
+# Analysis
+\<describe how you analysed your data, and how you contrasted your data with the group’s data.   
+Criterion 2: Justifies the analysis of the obtained data, including quality issues, to draw conclusions in a professional and engaging manner.\>
+
+## Equations (probably not useful, but just in case)
+
+If you want to insert equations (you probably don't) you can do so using the syntax below. You can also insert bits of inline code like, so the `2+2` here is produced by a piece of code, and the `r 2+2` is produced by an equation (namely `2+2`)
+
+The determinisstic part of the model is defined by this **in-line equation** as 
+$\mu_i = \beta_0 + \beta_1x$, and the stochastic part by the **centered equation**: 
+
+$$ \frac{1}{\sqrt{2\pi}\sigma}e^{-(x-\mu_i)^2/(2\sigma^2)} $$
+
+## Some example analysis: Get and load data
+
+If you downloaded the full folder, then the csv files you need are there. You can also get your own weather data if you want.
+```{r getting data, echo = T}
+# Sydney is 33.8688° S, 151.2093° E
+#see https://github.com/ALShum/rwunderground - you'll need to register an api key
+#use_metric = TRUE
+
+end_date <- Sys.Date()-1
+start_date <- Sys.Date()-35
+
+#lookup_airport("Melbourne")
+#set_location(zip_code = "2016") you can also use this
+
+#weather_sydney <- history_range(set_location(airport_code = "SYD"), date_start = start_date, date_end = end_date, limit = 10, no_api = FALSE, use_metric = TRUE, key = get_api_key(), raw = FALSE, message = TRUE)
+#write.csv(weather_sydney, file = "syd_weath.csv")
+weather_sydney <- read.csv("syd_weath.csv", stringsAsFactors = F)
+
+#weather_melbourne <- history_range(set_location(PWS_id = "IVICTORI842"), date_start = start_date, date_end = end_date, limit = 10, no_api = FALSE, use_metric = TRUE, key = get_api_key(), raw = FALSE, message = TRUE) #deliberately taking data from a slightly worse station. Use airport_code = "YMML" for equiv
+#weather_melbourne_gd <- history_range(set_location(PWS_id = "INORTHCO3"), date_start = start_date, date_end = end_date, limit = 10, no_api = FALSE, use_metric = TRUE, key = get_api_key(), raw = FALSE, message = TRUE)
+#write.csv(weather_melbourne, file = "mel_weath.csv")
+weather_melbourne <- read.csv("mel_weath.csv", stringsAsFactors = F)
+
+#to make this more interesting I'm going to randomly delete 500 observations
+weather_melbourne <- weather_melbourne[-sample(1:nrow(weather_melbourne), 800), ]
+#for another 250 observations we're going to deliberately add noisy missing data in the form of -9999 values
+weather_melbourne$temp[sample(nrow(weather_melbourne),250)] <- -9999
+
+#weather_sydney_summary <- history_daily(set_location(airport_code = "SYD"), date = start_date, use_metric = TRUE, key = get_api_key(), raw = FALSE, message = TRUE)
+#weather_melbourne_summary <- history_daily(set_location(airport_code = "YMML"), date = start_date, use_metric = TRUE, key = get_api_key(), raw = FALSE, message = TRUE)
+
+#if we wanted to write this data and read it. OR if you want to read data from your system or the web, you can use this pair of lines
+#write.csv(weather_sydney, file = "syd_weath.csv")
+#read.csv("syd_weath.csv", stringsAsFactors = F) #(you might wantto change stringsasfactors to True)
+
+```
+
+## Tables
+
+```{r Summary of Mel & Sydney weather, anchor="Table", echo=T}
+library(knitr)
+
+kable(rbind(psych::describe(weather_sydney$temp),psych::describe(weather_melbourne$temp)), caption = "Summary of Mel & Sydney weather")
+#note, you should label the rows
+```
+
+You'll see above that I used a labelled the table, I did that by adding `anchor="table"` to the start of the chunk (along with the name `Summary of Mel & Sydney weather`). Now, I can use `figr("Summary of Mel & Sydney weather", "Table")` to refer to it like this `r figr("Summary of Mel & Sydney weather")`. I haven't worked out if you can get it to output the whole caption (e.g. Table 1: Caption name here).  You should also see something weird in the data...what's going on there...
+
+## Plots
+
+An example (a pretty ugly one) of a plot is in the code, and visible below (once I get the captioning working again)...Let's see how this can be improved.
+
+```{r basic histograms, echo=TRUE}
+hist(weather_sydney$temp)
+hist(weather_melbourne$temp)
+```
+
+
+```{r cleaning, echo=TRUE}
+#this data used to need a lot more cleaning! Previously, you need to remove -9999 values
+SYD_temp <- as.data.frame(as.numeric(unlist(subset(weather_sydney, temp >-300, select=c("temp"))))) #you could also replace these wiht NA, but here we're just going to exclude the missing data
+colnames(SYD_temp)[1] <- "temp"
+SYD_temp$loc <- "SYD"
+
+MEL_temp <- as.data.frame(as.numeric(unlist(subset(weather_melbourne, temp >-300, select=c("temp")))))
+colnames(MEL_temp)[1] <- "temp"
+MEL_temp$loc <- "MEL"
+
+temps <- rbind(SYD_temp, MEL_temp)
+temps$temp <- as.numeric(temps$temp)
+
+```
+
+First off, I did a bit of cleaning (code chunk above). The ggplot package makes much nicer figures, like that shown in `r figr("pretty histograms", type = "Figure")`, *but* what's wrong with that figure? 
+
+```{r pretty histograms, echo=TRUE, anchor = "Figure", fig.cap="pretty histograms", fig.width=4, fig.height=4}
+ggplot(temps, aes(x = temp, fill = loc)) + geom_histogram(alpha = .5, position = 'identity') 
+```
+
+Hm, ok let's try and fix `r figr("pretty histograms")` ...
+
+```{r pretty histograms density, echo=T, anchor = "Figure", fig.cap="pretty histograms", fig.width=4, fig.height=4}
+ggplot(temps, aes(x = temp, fill = loc)) + geom_histogram(alpha = .5, aes(y = ..density..), position = 'identity') #note use of 'density' because we have unequal temperature counts in each dataset, and this lets us understand the data as a percentage over the period. Alpha is the transparency level.
+
+```
+
+`r figr("pretty histograms density")` is an improvement. There's another (also simple) way to do this
+
+```{r}
+histogram(~ temp | loc, data=temps)
+```
+
+
+What's wrong with this?
+```{r}
+ggplot(temps) + 
+  geom_bar(aes(x = loc, y = temp, fill = loc),
+           position = "dodge", stat = "summary", fun.y = "mean")
+```
+
+More informative?
+```{r}
+ggplot(temps, aes(x=loc, y=temp, fill=loc)) + geom_boxplot() +
+    guides(fill=FALSE)+
+    stat_summary(fun.y=mean, geom="point", shape=5, size=4)
+```
+
+
+Couple of useful things - let's pull the date out to its own value, and this time we'll replace missing values (-9999) with NA
+```{r}
+ggplot(weather_sydney, aes(x=temp, y=dew_pt)) +
+    geom_point(shape=1)      # Use hollow circles
+
+weather_sydney[weather_sydney == -9999] <- NA
+weather_sydney$date <- as.Date(weather_sydney$date)
+
+weather_melbourne[weather_melbourne == -9999] <- NA
+weather_melbourne$date <- as.Date(weather_melbourne$date)
+
+ggplot(weather_sydney, aes(x=temp, y=dew_pt)) +
+    geom_point(shape=1)      # Use hollow circles
+```
+
+What if we want to explore the relationship between dew_pt and other features
+https://support.office.com/en-us/article/Present-your-data-in-a-scatter-chart-or-a-line-chart-4570a80f-599a-4d6b-a155-104a9018b86e
+
+One way you might be tempted to do this...
+```{r}
+bad_example <- subset(weather_sydney, !is.na(hum), select=c("hum", "dew_pt","date"))
+bad_example[c("hum","dew_pt")] <- lapply(bad_example[c("hum","dew_pt")],as.numeric)
+
+bad_example <- aggregate(. ~ date, bad_example, FUN=mean)
+
+#convert to long
+bad_example <- melt(bad_example, id.vars = c("date"))
+
+ggplot(data=bad_example, aes(x=date, y=value, group=variable, colour=variable)) +
+    geom_line() +
+    geom_point()
+#Is date an important variable in this analysis? Does the scaling of the data gives us the best available insight into relationships of paired values? Is the use of a line to join datapoints appropriate given missing data?
+```
+
+A better way?
+```{r}
+ggplot(weather_sydney, aes(x=hum, y=dew_pt)) +
+    geom_point(shape=1)      # Use hollow circles
+
+cor.test(as.numeric(weather_sydney$hum),as.numeric(weather_sydney$dew_pt))
+
+```
+
+Of course, you don't have to just display the correlation, you can **_output the coefficient in-line with code: `r cor.test(as.numeric(weather_sydney$hum),as.numeric(weather_sydney$dew_pt))$estimate[[1]]`_*
+
+
+Ok what if we want to look at how weather varies over time and place?
+```{r}
+weather_sydney$loc <- "Sydney"
+weather_melbourne$loc <- "Melbourne"
+```
+
+```{r}
+weather <- rbind(weather_sydney[c("temp","dew_pt","hum","wind_spd","precip_total","cond","date","loc")],weather_melbourne[c("temp","dew_pt","hum","wind_spd","precip_total","cond","date","loc")])
+weather$month <- format(as.Date(weather$date), "%m")
+
+ggplot(weather, aes(x=month, y=temp, fill=loc)) + geom_boxplot() +
+    guides(fill=FALSE) +
+    stat_summary(fun.y=mean, geom="point", shape=5, size=4) +
+    facet_wrap(~loc)
+
+```
+
+Or at how weather events vary by place
+```{r}
+#unique(weather$Events)
+unique(weather$cond)
+
+table(weather$cond,weather$loc)
+
+weather_con <- unique(subset(weather,select=c("cond","date","loc")))
+
+ggplot(data=weather_con, aes(x=cond, fill = loc)) +
+    geom_bar(position=position_dodge()) +
+    theme(axis.text.x = element_text(angle = 90, vjust = .5, hjust = 1))
+
+#weather_con <- unique(subset(weather,select=c("Events","DateUTC","loc")))
+#ggplot(data=weather_con, aes(x=Events, fill = loc)) +
+ #   geom_bar(position=position_dodge()) +
+    #scale_y_continuous(labels=scales::percent) +
+  #  theme(axis.text.x = element_text(angle = 90, vjust = .5, hjust = 1))
+
+```
+
+We've often seen students refer to 'average mood'. Sometimes this might make sense, but this is an analogous example...
+```{r}
+#let's take the weather event data, and code it from best ('no event') to worst ('snow')
+weather_con$cond[weather_con$cond=="Clear"] <- 7
+weather_con$cond[weather_con$cond==""] <- 6
+weather_con$cond[weather_con$cond=="Mostly Cloudy"] <- 5
+weather_con$cond[weather_con$cond=="Light Rain Showers"] <- 4
+weather_con$cond[weather_con$cond=="Light Thunderstorms and Rain"] <- 3
+weather_con$cond[weather_con$cond=="Heavy Rain Showers"] <- 2
+weather_con$cond[weather_con$cond=="Thunderstorm"] <- 1
+
+weather_con$cond <- as.numeric(weather_con$cond)
+
+ggplot(weather_con, aes(x = loc, y = cond, fill=loc)) + geom_boxplot() +
+    stat_summary(fun.y=mean, geom="point", shape=5, size=4)
+```
+
+
+
+# Findings and Conclusions
+
+\<what conclusions did you come to as a result of the analysis of your data and of the group’s data.    
+Criterion 2: Justifies the analysis of the obtained data, including quality issues, to draw conclusions in a professional and engaging manner.\>
+
+# Discussion
+\<discuss aspects of the process that you see as important. For example, what difficulties did you encounter;  how could you avoid problems if you did it again; etc>
+
+Your ‘justification’ and evaluation of your approach is likely to go in this section, but may also be threaded through the preceding sections. This includes Criterion 3: Identifies, contextualises, and reflects on the ethical, privacy, and legal issues relevant to the collection and analysis of personal data of self and others. \> 
+
+# Reflection
+
+\<General reflection on what you learnt during this task. What are you unsure about? What would you do differently if you had to do it all again?  
+Criteria 4: Connects the individual experience of this QS project to the practice of data science (and the preceding three criteria). \> 
+
+# Other
+
+If you are submitting any additional materials, such as short multimedia presentations or visualisations (such as Prezi, or voice-over video/screen capture, etc), they probably can’t be submitted through UTSOnline so you will need to arrange some other process such as posting on YouTube or elsewhere, or handing in a memory stick or CD/DVD. Please ensure that additional material like this is accessible to the markers (test this by accessing it through someone else’s computer) and avoid any restrictive or proprietary software constraints. Remember to check any inculded web links!
+
+Diagrams, figures, charts and illustrations must be labelled, and explained, and must be referred to from somewhere in the report. If drawn from another source, then the source must be provided. 
+
+# References
+
+```{r, warning=FALSE, message=FALSE, echo=T} 
+  write.bibtex(file="references.bib")
+```

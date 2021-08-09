@@ -1,0 +1,221 @@
+---
+title: "The Quantified Self"
+author: "Simon Knight"
+date: "12/4/2021"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    storyboard: true
+    vertical_layout: fill
+    social: menu
+    source_code: embed
+    theme:
+      version: 4
+      bootswatch: flatly 
+---
+
+# Flexdashboard Template for DSI AT2
+
+I'm not sure a flexdashboard is a great way to present this kind of work, because it's a lot of text, while dashboards are really built for bits of commentary but mostly visual information.
+This example is a mess because I was playing around with different aspects of layout, so it needs fixing up.
+I would suggest bookdown as a more functional approach. 
+
+
+```{r setup-flex, include=FALSE, message=FALSE}
+library(flexdashboard)
+library(tidyverse)
+library(psych)
+library(kfigr) #lets us use cross referencing
+
+#The folowing probably aren't needed, check
+#library(reshape2)
+#library(plotly)
+# library(ggthemes)
+# library(GGally)
+# library(gridExtra)
+#library(chron) workshandles data and times
+
+#There's also a few lines to modify the CSS below to put the navigation on the side (rather than at the top) of the dashboard. Remove it to revert to the default.
+
+#I've also loaded a theme (flatly) - you can define your own.  Let's set the the rmd theme to match
+
+thematic::thematic_rmd()
+```
+```{r safekeeping css, eval=FALSE, include=FALSE}
+<style>
+.navbar {
+margin: 0;
+padding: 0;
+height: 100%;
+display: block;
+position: fixed;
+width: 200px; /* Modify the width of the     sidebar */
+}
+body {
+margin-left: 200px; /* Add a left margin to     avoid content overlay */
+padding-top:0px
+}
+</style>
+```
+
+
+About
+=======================================
+
+
+## Abstract  {.tabset}
+
+_If you really want to extend yourself, or already have skills in working with markdown, you might choose to use this file instead of a standard Rmd markdown document. Please note that while we're keen for you to extend your technical skills, *a key concern of AT2 is how you communicate about and with data*, so *take caution not to get distracted by technical issues, and to focus on the criteria*. This  template mirrors the other files to provide a structure for the report. Make sure that you read it closely, several times._
+
+## Word Length  {.tabset}
+2800 words (excluding data excerpts and appendices, visualisations, and references) 
+
+## Using this template  {.tabset}
+This is the suggested structure for your report. The basic structure is similar to the style of academic papers and, if followed, should ensure that everything you need to include is present. I have included the assessment criteria at the relevant places to remind you of what needs to be in the report. 
+
+You are free to vary the structure by renaming the sections, including other sections, or dropping ones that you don’t use. Keep in mind that the suggested structure is conventional (and therefore easy to follow), practical, and comprehensive. (Criterion 5: Professionally presented in a manner appropriate to the discipline.) If you do use this template, you will need to install R, RStudio, and the packages listed in the code block at the head of this document.
+
+Note: We have provided some sample code below, along with some text between angle brackets, < >. All of this should be replaced by your work.
+
+**_Please don't forget to include a title, name, student number, etc. on a covering sheet_**
+
+### Citations  {.tabset}
+
+You'll want to ensure that you connect what you did, and what you found, to the wider context of data science - including external sources of information (such as academic studies). You can build your reflection (criterion 4) through the paper like that. You'll need to work out how to cite (this is not my expertise)...
+The relationship was first described by Knight (2020). However, there are also opinions
+that the relationship is spurious Goodyear (2009).
+
+> This is a block quotation, if you have a long quote from someone this is the best way to do it (but don't forget hte citation). This is a very long line that will still be quoted properly when it wraps. Oh boy let's keep writing to make sure this is long enough to actually wrap for everyone. Oh, you can *put* **Markdown** into a blockquote. 
+
+### Other formatting {.tabset}
+
+You'll see that we can:
+
+ 1. Format things, e.g.
+ 
+  + *italicise*
+  + **or bold**
+  + **_or even bold italics_** (you can also have numbered sublists...)
+  
+    ...See the cheatsheet https://rmarkdown.rstudio.com/authoring_basics.html for more on this....to link to that by the way [I could have done this](https://rmarkdown.rstudio.com/authoring_basics.html)
+
+ 2. And add headings using a \# (but note, to get that to display properly I had to 'escape' it using a preceding backslash)
+ 3. And we can use citation, inline code, and charts
+ 4. All this means we can write a document, but we can also pull data in _live_ and  display it to the reader, who can also download this Rmd to see how we did it...it's pretty cool hey?
+
+But, just because it's in a different format, that doesn't mean you can get away with not following normal writing conventions. Writing should be in paragraphs, with correct spelling and grammar, and figures, etc. should be fully explained to the reader. For example, it's weird that I've just dumped Fig.1 image below, so in the methods, I'll make sure to explain them properly. (Note though, that this does illustrate how to include images - so if you do analysis outside R, you can still include figures, etc. without the code being R based)
+
+![Fig.1 A random logo image](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+
+## Other things  {.tabset}
+
+You can also include some fun things in markdown, for example 
+
+```{r echo=FALSE}
+valueBox("5430", caption = "group mean daily steps", icon = "fa-pencil")  
+valueBox("10,000", caption = "what was recommended", icon = "fa-stethoscope")
+n <- 70
+valueBox(paste0(n,"%"), 
+         caption = "number of days below recommendation", 
+         icon = "fa-thumbs-down",
+         color = ifelse(n > 50, "warning", "primary")) #colour conditional if over 50% 
+```
+
+
+Report structure
+=================================
+
+Introduction {.tabset}
+---------------------------------------
+
+### Introduction
+
+\<a paragraph that gives an overview of what you’ve done\>
+
+### Description of process, or method
+
+\<this is where you give details about what you’ve been collecting and how much you data have; why you choose this data to collect; how you managed the quality and frequency of collection issues; what you did to anonymise or de-identify the data, and how you dealt with the storage and sharing of data within the group. Do not include a dump of all your data here. If you wish to include examples of data (and I think you should) then put these in an appendix to the report.  
+Criterion 1: Justifies a method to obtain data from multiple sources, for gaining insight into a chosen problem, including analysis of data quality issues in the individual and group data.\>
+
+Analysis {.tabset}
+---------------------------------------
+### Analysis
+\<describe how you analysed your data, and how you contrasted your data with the group’s data.   
+Criterion 2: Justifies the analysis of the obtained data, including quality issues, to draw conclusions in a professional and engaging manner.\>
+
+### Equations (probably not useful, but just in case)
+
+If you want to insert equations (you probably don't) you can do so using the syntax below. You can also insert bits of inline code like, so the `2+2` here is produced by a piece of code, and the `r 2+2` is produced by an equation (namely `2+2`)
+
+The determinisstic part of the model is defined by this **in-line equation** as 
+$\mu_i = \beta_0 + \beta_1x$, and the stochastic part by the **centered equation**: 
+
+$$ \frac{1}{\sqrt{2\pi}\sigma}e^{-(x-\mu_i)^2/(2\sigma^2)} $$
+Analysis {.tabset}
+----------------------------
+
+### Get and load data
+
+```{r getting_data_flex, echo=FALSE, message=FALSE, warning=FALSE, paged.print=TRUE}
+#We're just going to demo this with one of the built in datasets
+df <- data(iris)
+
+#And 
+knitr::kable(iris)
+```
+
+### Tables
+
+```{r summarise_data, tab.cap="A summary table", echo=T}
+#knitr::kable(summary(iris))
+knitr::kable(describe(iris))
+
+```
+
+You'll see above that I used a labelled for the table, I did that by adding `\@ref(tab:summarise_data)`. Now, I can use this to refer to it like this \\@ref(tab:summarise_data). 
+
+### Plots
+
+An example (a pretty ugly one) of a plot is in the code, and visible below (once I get the captioning working again)...Let's see how this can be improved.
+
+```{r basic_histograms, echo=TRUE}
+hist(iris$Sepal.Length)
+
+```
+
+The ggplot package makes much nicer figures, like that shown in `r figr("pretty_histograms", type = "Figure")`. 
+
+```{r pretty_histograms, echo=TRUE, anchor = "Figure", fig.cap="pretty histograms", fig.width=4, fig.height=4}
+ggplot(iris, aes(x = Sepal.Length, fill = Species)) + geom_histogram(alpha = .5, position = 'identity') 
+
+```
+
+Discussion, etc. {.tabset}
+--------------------------------
+
+### Findings and Conclusions
+
+\<what conclusions did you come to as a result of the analysis of your data and of the group’s data.    
+Criterion 2: Justifies the analysis of the obtained data, including quality issues, to draw conclusions in a professional and engaging manner.\>
+
+### Discussion
+\<discuss aspects of the process that you see as important. For example, what difficulties did you encounter;  how could you avoid problems if you did it again; etc>
+
+Your ‘justification’ and evaluation of your approach is likely to go in this section, but may also be threaded through the preceding sections. This includes Criterion 3: Identifies, contextualises, and reflects on the ethical, privacy, and legal issues relevant to the collection and analysis of personal data of self and others. \> 
+
+### Reflection
+
+\<General reflection on what you learnt during this task. What are you unsure about? What would you do differently if you had to do it all again?  
+Criteria 4: Connects the individual experience of this QS project to the practice of data science (and the preceding three criteria). \> 
+
+Other
+--------------------------------
+
+If you are submitting any additional materials, such as short multimedia presentations or visualisations (such as Prezi, or voice-over video/screen capture, etc), they probably can’t be submitted through UTSOnline so you will need to arrange some other process such as posting on YouTube or elsewhere, or handing in a memory stick or CD/DVD. Please ensure that additional material like this is accessible to the markers (test this by accessing it through someone else’s computer) and avoid any restrictive or proprietary software constraints. Remember to check any inculded web links!
+
+Diagrams, figures, charts and illustrations must be labelled, and explained, and must be referred to from somewhere in the report. If drawn from another source, then the source must be provided. 
+
+## References
+------------------------------------------
+
+Your reference list should go here
