@@ -24,7 +24,7 @@ output:
 
 -----
 
-# Simplified Template for DSI AT2
+## Simplified Template for DSI AT2
 
 ## Preface: How to use this guide
 This document has a suggested structure for your report, starting from section 1 "Introduction". Before that, we have some tutorials on how to set up your environment, which you can delete once you've read so you don't hand them in.

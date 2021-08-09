@@ -17,7 +17,7 @@ output:
 
 -----
 
-# Simplified (very) Template for DSI AT2
+## Simplified (very) Template for DSI AT2
 
 This is the template, or structure for the report. Make sure that you read it closely, several times.
 
