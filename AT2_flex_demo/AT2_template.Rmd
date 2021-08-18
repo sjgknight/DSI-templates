@@ -215,7 +215,7 @@ If you are submitting any additional materials, such as short multimedia present
 
 Diagrams, figures, charts and illustrations must be labelled, and explained, and must be referred to from somewhere in the report. If drawn from another source, then the source must be provided. 
 
-## References
+## References {#flex_refs}
 ------------------------------------------
 
 Your reference list should go here

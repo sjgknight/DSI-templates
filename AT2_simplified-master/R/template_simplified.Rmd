@@ -20,40 +20,74 @@ output:
         fig_caption: yes
         toc: yes
         toc_depth: '2'   
+editor_options: 
+  markdown: 
+    wrap: 72
 ---
 
------
+------------------------------------------------------------------------
 
 ## Simplified Template for DSI AT2
 
 ## Preface: How to use this guide
-This document has a suggested structure for your report, starting from section 1 "Introduction". Before that, we have some tutorials on how to set up your environment, which you can delete once you've read so you don't hand them in.
 
-The basic structure of this template is similar to the style of academic papers and, if followed, should ensure that everything you need to include is present. I have included the assessment criteria at the relevant places to remind you of what needs to be in the report. 
+This document has a suggested structure for your report, starting from
+section 1 "Introduction". Before that, we have some tutorials on how to
+set up your environment, which you can delete once you've read so you
+don't hand them in.
 
-You are free to vary the structure by renaming the sections, including other sections, or dropping ones that you don’t use. Keep in mind that the suggested structure is conventional (and therefore easy to follow), practical, and comprehensive. (Criterion 5: Professionally presented in a manner appropriate to the discipline.) If you do use this template, you will need to install R, RStudio, and the packages listed in the code block at the head of this document.
+The basic structure of this template is similar to the style of academic
+papers and, if followed, should ensure that everything you need to
+include is present. I have included the assessment criteria at the
+relevant places to remind you of what needs to be in the report.
 
-Note: We have provided some sample code below, along with some text between angle brackets, < >. All of this should be replaced by your work.
+You are free to vary the structure by renaming the sections, including
+other sections, or dropping ones that you don't use. Keep in mind that
+the suggested structure is conventional (and therefore easy to follow),
+practical, and comprehensive. (Criterion 5: Professionally presented in
+a manner appropriate to the discipline.) If you do use this template,
+you will need to install R, RStudio, and the packages listed in the code
+block at the head of this document.
 
-**_Please don't forget to include a title, name, student number, etc. on a covering sheet_**
+Note: We have provided some sample code below, along with some text
+between angle brackets, \< \>. All of this should be replaced by your
+work.
+
+***Please don't forget to include a title, name, student number, etc. on
+a covering sheet***
 
 ## Set up a project
-It is best to set up your assignment as a project, rather than just have a single RMarkdown file. Setting up a project will define your working directory based on where a .RProj file is located. Other files and folders can then be found relative to that .RProj file. This gives projects some advantages:
-- It's easier to find your files, because you can set up subfolders with consistent names
-- You can refer to your data with relative referencing, eg `../datamy_data.csv`, rather than having to type `C:\folder\other_folder\data\my_data.csv`. 
-- When you open your project, it unloads your libraries and clears your memory. That way, the libraries that you had loaded before won't get in the way of the one you're working on now. But when you close this project, it goes back to the state it was in before. 
 
-To start a project in RStudio, 
-- click File -> New Project and follow the prompts to set up a new project in a new folder. 
-- Create subfolders called "R" and "data". 
-- Save this template to the R folder, along with any other R code files you create on the project.
-- Save any data files (eg csv files, or screenshots from your other analysis) to the data folder. 
+It is best to set up your assignment as a project, rather than just have
+a single RMarkdown file. Setting up a project will define your working
+directory based on where a .RProj file is located. Other files and
+folders can then be found relative to that .RProj file. This gives
+projects some advantages: - It's easier to find your files, because you
+can set up subfolders with consistent names - You can refer to your data
+with relative referencing, eg `../datamy_data.csv`, rather than having
+to type `C:\folder\other_folder\data\my_data.csv`. - When you open your
+project, it unloads your libraries and clears your memory. That way, the
+libraries that you had loaded before won't get in the way of the one
+you're working on now. But when you close this project, it goes back to
+the state it was in before.
 
-I highly recommend [this link on project-oriented workflow]("https://www.tidyverse.org/articles/2017/12/workflow-vs-script/")
+To start a project in RStudio, - click File -\> New Project and follow
+the prompts to set up a new project in a new folder. - Create subfolders
+called "R" and "data". - Save this template to the R folder, along with
+any other R code files you create on the project. - Save any data files
+(eg csv files, or screenshots from your other analysis) to the data
+folder.
 
+I highly recommend [this link on project-oriented
+workflow](%22https://www.tidyverse.org/articles/2017/12/workflow-vs-script/%22)
 
 ## Install packages
-If we don't have these packages, we'll need to download them from the internet. Here's some code that does that. The code is currently commented out (that is, it has a "#" at the start of the line.) Remove the "#" if you want to install those packages. 
+
+If we don't have these packages, we'll need to download them from the
+internet. Here's some code that does that. The code is currently
+commented out (that is, it has a "\#" at the start of the line.) Remove
+the "\#" if you want to install those packages.
+
 ```{r setup-simp, echo=TRUE}
 # install.packages(c("tidyverse", "here", "knitr"))
 
@@ -65,10 +99,14 @@ If we don't have these packages, we'll need to download them from the internet. 
 ## There will be two. Click them one at a time and click the Execute button. 
 
 ```
-Now, test the file by using the 'knit' button (just above this code chunk).
-Read more about R markdown and 'kniting' (rendering) documents here: https://rmarkdown.rstudio.com/authoring_quick_tour.html#overview 
 
-Installing the packages only puts them on our computer. To use them in our project, we need them loaded.
+Now, test the file by using the 'knit' button (just above this code
+chunk). Read more about R markdown and 'kniting' (rendering) documents
+here: <https://rmarkdown.rstudio.com/authoring_quick_tour.html#overview>
+
+Installing the packages only puts them on our computer. To use them in
+our project, we need them loaded.
+
 ```{r, echo=TRUE, message=FALSE, warning=FALSE}
   # Load libraries
   library(psych)
@@ -86,56 +124,78 @@ Installing the packages only puts them on our computer. To use them in our proje
 
 ## Calculating word length
 
-The word limit is 2800 words (excluding data excerpts and appendices, visualisations, and references) 
-To check this, you can either copy the html output to word, or use the addin Word Count Addin.  E.g.
+The word limit is 2800 words (excluding data excerpts and appendices,
+visualisations, and references) To check this, you can either copy the
+html output to word, or use the addin Word Count Addin. E.g.
 `wordcountaddin:::text_stats()`
+
 ```{r wordcount, eval=FALSE, message=FALSE, warning=FALSE, include=FALSE}
 wordcountaddin:::text_stats()
 ```
 
 ## Citations
-In this assignment, we'll use footnotes to do citation. Here's how to do it. ^[This is the text of the footnote which you can see at the bottom of the page.]
+
+In this assignment, we'll use footnotes to do citation. Here's how to do
+it. [^1]
 
 ## Formatting guide
-Here are some formatting tricks you can use.   
+
+Here are some formatting tricks you can use.
 
 ### Fonts
 
-*italics*   
-**bold**   
-**_bold italics_**  
-`verbatim code`   
-superscript^2^   
-subscript~2~   
+*italics*\
+**bold**\
+***bold italics***\
+`verbatim code`\
+superscript^2^\
+subscript~2~
 
-> This is a block quotation, if you have a long quote from someone this is the best way to do it (but don't forget the citation). This is a very long line that will still be quoted properly when it wraps. Oh boy let's keep writing to make sure this is long enough to actually wrap for everyone. Oh, you can *put* **Markdown** into a blockquote.
+> This is a block quotation, if you have a long quote from someone this
+> is the best way to do it (but don't forget the citation). This is a
+> very long line that will still be quoted properly when it wraps. Oh
+> boy let's keep writing to make sure this is long enough to actually
+> wrap for everyone. Oh, you can *put* **Markdown** into a blockquote.
 
 ### Headings
-Add headings using a \# (but note, to get that to display properly I had to 'escape' it using a preceding backslash). One \# gives you a line with Heading 1 style, \## gives you Heading 2 etc.
+
+Add headings using a \# (but note, to get that to display properly I had
+to 'escape' it using a preceding backslash). One \# gives you a line
+with Heading 1 style, \#\# gives you Heading 2 etc.
 
 ### Lists
-1. Numbered
-2. Lists
-3. Are
-4. Possible
-+ And so
-+ are bulleted lists
 
-More examples can be found [on the cheat sheet at this hyperlink](https://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf)
+1.  Numbered
+2.  Lists
+3.  Are
+4.  Possible
+
+-   And so
+-   are bulleted lists
+
+More examples can be found [on the cheat sheet at this
+hyperlink](https://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf)
 
 ### Equations
-If you want to insert equations (you probably don't) you can do so using the syntax below. You can also insert bits of inline code like, so the `2+2` here is produced by a piece of code, and the `r 2+2` is produced by an equation (namely `2+2`)
 
-The deterministic part of the model is defined by this **in-line equation** as 
-$\mu_i = \beta_0 + \beta_1x$, and the stochastic part by the **centered equation**: 
+If you want to insert equations (you probably don't) you can do so using
+the syntax below. You can also insert bits of inline code like, so the
+`2+2` here is produced by a piece of code, and the `r 2+2` is produced
+by an equation (namely `2+2`)
 
-$$ \frac{1}{\sqrt{2\pi}\sigma}e^{-(x-\mu_i)^2/(2\sigma^2)} $$
-More examples at [this hyperlink](https://www.statpower.net/Content/310/R%20Stuff/SampleMarkdown.html)  
+The deterministic part of the model is defined by this **in-line
+equation** as $\mu_i = \beta_0 + \beta_1x$, and the stochastic part by
+the **centered equation**:
 
+$$ \frac{1}{\sqrt{2\pi}\sigma}e^{-(x-\mu_i)^2/(2\sigma^2)} $$ More
+examples at [this
+hyperlink](https://www.statpower.net/Content/310/R%20Stuff/SampleMarkdown.html)
 
 ## Embedding an image
-You might have saved some analysis from another program as a picture file. This is how you paste it:
-Let's embed a UTS logo, which I've saved to the `data` folder. 
+
+You might have saved some analysis from another program as a picture
+file. This is how you paste it: Let's embed a UTS logo, which I've saved
+to the `data` folder.
 
 ```{r add_picture, echo=FALSE}
 #knitr::include_graphics(here::here("data", "uts_logo.png"))
@@ -143,22 +203,40 @@ knitr::include_graphics("../data/uts_logo.png")
 
 ```
 
------
+------------------------------------------------------------------------
 
 ## Introduction
-\< Write a paragraph that gives an overview of what you’ve done. Also, make sure to include the assignment title, your name, and student number in rows 2 to 4 at the top of the page in RMarkdown. \>
+
+\< Write a paragraph that gives an overview of what you've done. Also,
+make sure to include the assignment title, your name, and student number
+in rows 2 to 4 at the top of the page in RMarkdown. \>
 
 ## Description of process or methods
-\<this is where you give details about what you’ve been collecting and how much you data have; why you choose this data to collect; how you managed the quality and frequency of collection issues; what you did to anonymise or de-identify the data, and how you dealt with the storage and sharing of data within the group. Do not include a dump of all your data here. If you wish to include examples of data (and I think you should) then put these in an appendix to the report.  
-*Criterion 1: Justifies a method to obtain data from multiple sources, for gaining insight into a chosen problem, including analysis of data quality issues in the individual and group data.*\>
+
+\<this is where you give details about what you've been collecting and
+how much you data have; why you choose this data to collect; how you
+managed the quality and frequency of collection issues; what you did to
+anonymise or de-identify the data, and how you dealt with the storage
+and sharing of data within the group. Do not include a dump of all your
+data here. If you wish to include examples of data (and I think you
+should) then put these in an appendix to the report.\
+*Criterion 1: Justifies a method to obtain data from multiple sources,
+for gaining insight into a chosen problem, including analysis of data
+quality issues in the individual and group data.*\>
 
 ## Analysis
-\<describe how you analysed your data, and how you contrasted your data with the group’s data.   
-*Criterion 2: Justifies the analysis of the obtained data, including quality issues, to draw conclusions in a professional and engaging manner.*\>
+
+\<describe how you analysed your data, and how you contrasted your data
+with the group's data.\
+*Criterion 2: Justifies the analysis of the obtained data, including
+quality issues, to draw conclusions in a professional and engaging
+manner.*\>
 
 ### Example analysis: Get data
 
-If you downloaded the full folder, then the csv files you need are there. You can also get your own weather data if you want.
+If you downloaded the full folder, then the csv files you need are
+there. You can also get your own weather data if you want.
+
 ```{r getting_data, echo = TRUE, warning=FALSE,message=FALSE}
 library(tidyverse)
 library(here)
@@ -186,8 +264,8 @@ my_fake_data2 <- tibble(normal_column = rnorm(n = 50, mean = 0, sd = 1),
 
 ```
 
-
 ### Example analysis: Explore data
+
 ```{r explore_data}
 
 #Explore using base R techniques
@@ -216,6 +294,7 @@ prop.table(table(weather_sydney$cond)) * 100 # Percentage of each condition
 
 #
 ```
+
 ### Example Analysis: Explore data via statistical summaries
 
 ```{r Summaryweather, echo=T}
@@ -225,13 +304,20 @@ kable(rbind(psych::describe(weather_sydney$temp),
 #note, you should label the rows
 ```
 
-You'll see above that I used a labelled the table, I did that by using the chunk name, and type like this: `\@ref(tab:Summaryweather`. Now, I can use that to refer to it like this \@ref(tab:Summaryweather)
+You'll see above that I used a labelled the table, I did that by using
+the chunk name, and type like this: `\@ref(tab:Summaryweather`. Now, I
+can use that to refer to it like this \@ref(tab:Summaryweather)
 
-Of course, you don't have to just display the correlation, you can **_output the coefficient in-line with code: `r cor.test(as.numeric(weather_sydney$hum),as.numeric(weather_sydney$dew_pt))$estimate[[1]]`_*
-
+Of course, you don't have to just display the correlation, you can
+\*\**output the coefficient in-line with code:
+`r cor.test(as.numeric(weather_sydney$hum),as.numeric(weather_sydney$dew_pt))$estimate[[1]]`*\*
 
 ### Example analysis: Tidy data
-To tidy data is to prepare it for analysis. The `tidyverse` package includes a package called `dplyr` which does this very well. Here are some examples
+
+To tidy data is to prepare it for analysis. The `tidyverse` package
+includes a package called `dplyr` which does this very well. Here are
+some examples
+
 ```{r tidy_data}
 #Combine the two weather data sets by putting the rows on top of each other
 weather_combined <- weather_sydney %>%
@@ -265,7 +351,15 @@ weather_combined
 ```
 
 ### Example analysis: Create charts for presentation
-`ggplot2` is a library that adds analysis one layer at a time, giving you a lot more control over what you want to see. This can make it a better tool for making charts designed to communicate ideas with your audience, rather than the standard charts that we used before. To explore the philosophy behind ggplot2, and get links to galleries and cheat sheets, go to [click this hyperlink](https://ggplot2.tidyverse.org/).
+
+`ggplot2` is a library that adds analysis one layer at a time, giving
+you a lot more control over what you want to see. This can make it a
+better tool for making charts designed to communicate ideas with your
+audience, rather than the standard charts that we used before. To
+explore the philosophy behind ggplot2, and get links to galleries and
+cheat sheets, go to [click this
+hyperlink](https://ggplot2.tidyverse.org/).
+
 ```{r charts, warning=FALSE,message=FALSE}
 #Get data
 temp <- weather_sydney %>%
@@ -281,40 +375,68 @@ ggplot(temp, aes(x = temp, fill = loc)) +
                  ) 
 ```
 
-
 ## Findings and conclusion
 
-\<what conclusions did you come to as a result of the analysis of your data and of the group’s data.    
-Criterion 2: Justifies the analysis of the obtained data, including quality issues, to draw conclusions in a professional and engaging manner.\>
-
+\<what conclusions did you come to as a result of the analysis of your
+data and of the group's data.\
+Criterion 2: Justifies the analysis of the obtained data, including
+quality issues, to draw conclusions in a professional and engaging
+manner.\>
 
 ## Discussion
 
-\<discuss aspects of the process that you see as important. For example, what difficulties did you encounter;  how could you avoid problems if you did it again; etc>
+\<discuss aspects of the process that you see as important. For example,
+what difficulties did you encounter; how could you avoid problems if you
+did it again; etc\>
 
-Your ‘justification’ and evaluation of your approach is likely to go in this section, but may also be threaded through the preceding sections. This includes Criterion 3: Identifies, contextualises, and reflects on the ethical, privacy, and legal issues relevant to the collection and analysis of personal data of self and others. \> 
+Your 'justification' and evaluation of your approach is likely to go in
+this section, but may also be threaded through the preceding sections.
+This includes Criterion 3: Identifies, contextualises, and reflects on
+the ethical, privacy, and legal issues relevant to the collection and
+analysis of personal data of self and others. \>
 
 ## Reflection
 
-\<General reflection on what you learnt during this task. What are you unsure about? What would you do differently if you had to do it all again?  
-Criteria 4: Connects the individual experience of this QS project to the practice of data science (and the preceding three criteria). \> 
+\<General reflection on what you learnt during this task. What are you
+unsure about? What would you do differently if you had to do it all
+again?\
+Criteria 4: Connects the individual experience of this QS project to the
+practice of data science (and the preceding three criteria). \>
 
-## References
-<include any cited references, formatted in Harvard style.> 
+## References {#simplified_refs}
+
+\<include any cited references, formatted in Harvard style.\>
 
 ## Appendices
-<include samples of your data - enough to give a sense of what your raw data looks like>
+
+\<include samples of your data - enough to give a sense of what your raw
+data looks like\>
 
 ## Other
-If you are submitting any additional materials, such as short multimedia presentations or visualisations (such as Prezi, or voice-over video/screen capture, etc), they probably can’t be submitted through canvas so you will need to arrange some other process such as posting on YouTube or elsewhere. Please ensure that additional material like this is accessible to the markers and avoid any restrictive or proprietary software constraints. Remember to check any included links!
 
-Diagrams, figures, charts and illustrations must be labelled, and explained, and must be referred to from somewhere in the report. If drawn from another source, then the source must be provided. 
+If you are submitting any additional materials, such as short multimedia
+presentations or visualisations (such as Prezi, or voice-over
+video/screen capture, etc), they probably can't be submitted through
+canvas so you will need to arrange some other process such as posting on
+YouTube or elsewhere. Please ensure that additional material like this
+is accessible to the markers and avoid any restrictive or proprietary
+software constraints. Remember to check any included links!
+
+Diagrams, figures, charts and illustrations must be labelled, and
+explained, and must be referred to from somewhere in the report. If
+drawn from another source, then the source must be provided.
 
 ## The ODI Canvas
-You can download it and include it like this (play around with the settings to make it display sensibly). You can also include it as a html file, etc.
+
+You can download it and include it like this (play around with the
+settings to make it display sensibly). You can also include it as a html
+file, etc.
 
 ```{r add_ODI, echo=FALSE, out.width="100%"}
 knitr::include_graphics("../data/DSI_copy_ODI_Data_Ethics_Canvas.pdf")
 
 knitr::include_url("https://docs.google.com/document/d/14qEn_yoOpInUAvA8ndNGMNuhxgywQJ3ODmCKcxYZPGQ/edit?usp=sharing")
 ```
+
+[^1]: This is the text of the footnote which you can see at the bottom
+    of the page.
