@@ -1,0 +1,359 @@
+---
+title: "AT2 template guide"
+author: "Your name here"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+output:
+  bookdown::html_document2:
+    fig_caption: yes
+    force_captions: yes
+    toc: yes
+    toc_depth: 3
+    toc_float: yes
+    collapsed: yes
+    highlight: pygments
+    number_sections: yes
+    df_print: kable
+    code_folding: hide
+    theme:
+      version: 4
+editor_options:
+  chunk_output_type: inline
+bibliography: ["packages.bib","references.bib"]
+link-citations: true
+---
+
+```{r setup, include=FALSE}
+#install.packages("pacman")
+library(pacman)
+p_load(bs4cards, tidyverse, here)
+
+```
+
+# Your AT2 and using R Notebooks 
+
+Data scientists don't just use Word and Powerpoint to write. They also write live reports, that draw on real-time data to show visualisations alongside narratives. This type of writing can draw on APIs, databases, and local data to write text and conduct reproducible analysis of data for insights. One of the key tools to do this is 'notebooks'.
+
+For AT2, we want you to use RStudio to write and submit your report. We know this will be unfamiliar for many of you, but that's ok. We're not asking you to learn to code. We've provided a template, and if you want, you can simply modify the example 'markdown' to format your own report, and load visualisations that you've created in other tools (like [RawGraphs.io](https://app.rawgraphs.io/), or [Tableau](https://www.tableau.com/academic/students#form)). Some of you will want to go further, and that's ok too! But remember to address the assessment criteria - this isn't an assignment where you have to demonstrate technical coding skills.
+
+*Please note that while we're keen for you to extend your technical skills, a key concern of AT2 is how you communicate about and with data*, so *take caution not to get distracted by technical issues, and to focus on the criteria*. This template provides a structure for the report. Make sure that you read it closely, several times.
+
+This template serves two purpose:
+
+1.  It gives you a suggested structure for your report
+2.  It demonstrates some of the functions or `R` and `markdown`
+
+## Structure of the template
+
+I have included the assessment criteria at the relevant places to remind you of what needs to be in the report.
+
+You are free to vary the structure by renaming the sections, including other sections, or dropping ones that you don't use. Keep in mind that the suggested structure is conventional (and therefore easy to follow), practical, and comprehensive. (Criterion 5: Professionally presented in a manner appropriate to the discipline.) If you do use this template, you will need to install R, RStudio, and the packages listed in the code block at the head of this document.
+
+Note: We have provided some sample code below, along with some text between angle brackets, \< \>. All of this should be replaced by your work.
+
+***Please don't forget to include a title, name, student number, etc. on a covering sheet***
+
+## To submit AT2, you will:
+
+1.  Complete self assessment on [REVIEW](https://uts.review-edu.com/uts)
+2.  Use the RMarkdown template to 'knit' a html file (by default html, you may use pdf, or knit to rich text if you really want, but I suggested you stick to html)
+3.  Upload to Canvas: 1.1 If you have used this template with defaults, just the html output. This should include the code links (if not, also upload your Rmd file. 1.1 If you have modified anything, then the HTML/PDF/.doc output and any associated directories (it may be necessary to zip this). In this case you will also need to share the raw .Rmd.
+
+You may also wish to share these on github or [rpubs](https://rpubs.com) - however, consider the privacy implications of doing so first.
+
+## Word Length
+
+2800 words (excluding data excerpts and appendices, visualisations, and references).
+
+See details below for referencing. If you use footnotes, they are included like this [^1].
+
+To check this, you can either copy the html output to word, or use the addin Word Count Addin. E.g. `wordcountaddin:::text_stats()`
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+wordcountaddin:::text_stats()
+```
+
+## Introduction to R Notebooks
+
+<details>
+
+<summary>
+Click here to read more about R Notebooks!
+</summary>
+
+This is an [R Markdown](http://rmarkdown.rstudio.com) Notebook. When you execute code within the notebook, the results appear beneath the code.
+
+Try executing the chunk by clicking the *Run* button within the chunk or by placing your cursor inside it and pressing *Ctrl+Shift+Enter*.
+
+Add a new chunk by clicking the *Insert Chunk* button on the toolbar or by pressing *Ctrl+Alt+I*.
+
+When you save the notebook, an HTML file containing the code and output will be saved alongside it (click the *Preview* button or press *Ctrl+Shift+K* to preview the HTML file).
+
+The preview shows you a rendered HTML copy of the contents of the editor. Consequently, unlike *Knit*, *Preview* does not run any R code chunks. Instead, the output of the chunk when it was last run in the editor is displayed.
+
+</details>
+
+## Read more about working with notebooks in R
+
+```{r gallery-demo2}
+#Read more about R markdown and 'kniting' (rendering) documents https://rmarkdown.rstudio.com/authoring_quick_tour.html#overview 
+
+# How to install R and RStudio
+# How to use markdown
+# knitting documents
+# bookdown and yaml
+# fancier formatting 
+# blogdown if you want to get really fancy
+
+#tibble()
+
+
+galleries %>% 
+  cards(
+    title = long_name,
+    text = blurb,
+    link = gallery_url,
+    image = image_url,
+    tags = paste("all;", paintbrushes),
+    width = 4,
+    footer = paintbrushes,
+    layout = "label-right"
+  )
+
+```
+
+## Setting the notebook up
+
+The template is made up of:
+
+1.  this file (which you're probably viewing the output of)
+2.  the raw .Rmd file
+3.  a suggested directory structure
+
+The easiest way to work with it is to download the github repo and open the .Rproj file in RStudio.
+
+### Using projects in R
+
+
+It is best to set up your assignment as a project, rather than just have
+a single RMarkdown file. Setting up a project will define your working
+directory based on where a .RProj file is located. Other files and
+folders can then be found relative to that .RProj file. This gives
+projects some advantages: - It's easier to find your files, because you
+can set up subfolders with consistent names - You can refer to your data
+with relative referencing, eg `../datamy_data.csv`, rather than having
+to type `C:\folder\other_folder\data\my_data.csv`. - When you open your
+project, it unloads your libraries and clears your memory. That way, the
+libraries that you had loaded before won't get in the way of the one
+you're working on now. But when you close this project, it goes back to
+the state it was in before.
+
+To start a project in RStudio, - click File -\> New Project and follow
+the prompts to set up a new project in a new folder. - Create subfolders
+called "R" and "data". - Save this template to the R folder, along with
+any other R code files you create on the project. - Save any data files
+(eg csv files, or screenshots from your other analysis) to the data
+folder.
+
+I highly recommend [this link on project-oriented workflow](https://www.tidyverse.org/articles/2017/12/workflow-vs-script/)
+
+### Installing Packages
+
+If we don't have these packages, we'll need to download them from the
+internet. Here's some code that does that. 
+
+You'll see a "\#" at the start of the first line; this tells `R` that it is a 'comment' not code. If you remove the "\#" `R` will try to run the code. 
+
+Installing the packages only puts them on our computer. To use them in
+our project, we need them loaded, I've used a package called `pacman` which checks if you have the called packages installed, and loads them. Normally you should not do this, because it's useful to be aware of the environment you're executing code with.
+
+You may also want to `knit` the file on your computer, which will install the useful packages below.
+
+```{r load_packages}
+#install.packages("pacman")
+
+library(pacman)
+
+p_load(bs4cards, tidyverse, flexdashboard, shiny, psych, devtools, bibtex, curl, gganimate)
+
+p_load_gh("benmarwick/wordcountaddin")
+
+#go to Tools > Addins to select the wordcountaddin 
+
+pacman::p_install_gh("hadley/emo") #install, but call functions directly. Largely for illustrative
+
+```
+
+## Add timeline with linked headings here `r emo::ji("calendar")`
+
+# The Quantified Self
+
+<iframe src="https://embed.ted.com/talks/gary_wolf_the_quantified_self" data-external="1">
+
+</iframe>
+
+Old examples of this assignment, and all of our feedback given in a previous semester at <https://drive.google.com/drive/u/1/folders/1bxq1cISULLcmU7kRdadCg-RszVrBKGbA>
+
+You might find vignettes at <https://sjgknight.github.io/DSI/> helpful if you want to use R to do analysis (but remember, you do not have to)
+
+For AT2 you will collect, record, share, and analyse several types of data about yourself and compare and contrast what you find in your analysis with an analysis of the same data from the group. The following requirements apply to your data collection:
+
+Two sources of data negotiated with your group for sharing: Unstructured. One of which must be unstructured in nature (e.g. text, comments, images, audio, etc. You might obtain this from social media, email, slack, twitter, daily photos, etc.) - you may find the 'what does facebook know about you' materials useful for this. Your choice, structured or unstructured. The second source can be structured, drawing on one of the many examples provided. You are expected to individually collect one other data source of personal interest to you. This data does not need to be shared across the groups, but should be analysed by you in your report. External cohort-level data to compare your own data to (probably summary data from previously published work): The idea of this dataset is that you will have data from: (1) an individual, (2) a small group, and (3) a larger cohort. You will probably draw on published summary level data (for example, what is the average step count in Australia?...for who?), or publicly available stepcount data. For example, you may be able to obtain data from one of these sources: <http://openhumansfoundation.org/ohjh-example-notebooks/> <http://vhosts.eecs.umich.edu/vision//activity-dataset.html> interesting image dataset <http://quantifiedself.com/open-data/> <http://www.cs.vu.nl/~mhoogen/ml4qs/crowdsignals.zip> described <http://crowdsignals.io/> <http://www.cis.fordham.edu/wisdm/dataset.php> <http://www.cis.fordham.edu/wisdm/dataset.php#actitracker>
+
+You will negotiate and agree a processes for recording, sharing and storing the data being collected as a group, in the on-campus briefing session for AT2. Your attendance at this session will be crucial in getting off to a strong start with a minimum of disruption for this major task.
+
+Examples of data that you and your group could collect include: daily step counts; pulse rates; time spent on activities each day (exercise, grooming, travelling, eating/cooking, shopping, sleeping studying, etc.); sleep patterns; daily spending; number & length of conversations each day; location tracking, and so on. Some of these can be easily tracked via smartphone apps, see examples at <https://quantifiedself.com/>
+
+## AT2 components {.tabset .tabset-fade}
+
+Assignment two has 3 parts. This structure ensures you're on track for the assignment, and provides an opportunity for you to resubmit your AT2 taking into account the feedback provided to make changes.
+
+### Week 5 AT2a
+
+AT2a is due week 5, and is a short online form (only available in the week before due date)
+
+### Week 9 AT2b
+
+AT2b is due week 9, via Canvas, and consists of (a) a draft of your final submission, and (b) your feedback to your class colleagues via peer review
+
+### exam period AT2c
+
+AT2c is your final submission, due in the UTS exam period
+
+## Formatting guide
+
+Here are some formatting tricks you can use.
+
+### Fonts
+
+*italics*\
+**bold**\
+***bold italics***\
+`verbatim code`\
+superscript^2^\
+subscript~2~
+
+> This is a block quotation, if you have a long quote from someone this
+> is the best way to do it (but don't forget the citation). This is a
+> very long line that will still be quoted properly when it wraps. Oh
+> boy let's keep writing to make sure this is long enough to actually
+> wrap for everyone. Oh, you can *put* **Markdown** into a blockquote.
+
+### Headings
+
+Add headings using a \# (but note, to get that to display properly I had
+to 'escape' it using a preceding backslash). One \# gives you a line
+with Heading 1 style, \#\# gives you Heading 2 etc.
+
+### Lists
+
+1.  Numbered
+2.  Lists
+3.  Are
+4.  Possible
+
+-   And so
+-   are bulleted lists
+
+More examples can be found [on the cheat sheet at this
+hyperlink](https://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf)
+
+### Equations
+
+If you want to insert equations (you probably don't) you can do so using
+the syntax below. You can also insert bits of inline code like, so the
+`2+2` here is produced by a piece of code, and the `r 2+2` is produced
+by an equation (namely `2+2`)
+
+The deterministic part of the model is defined by this **in-line
+equation** as $\mu_i = \beta_0 + \beta_1x$, and the stochastic part by
+the **centered equation**:
+
+$$ \frac{1}{\sqrt{2\pi}\sigma}e^{-(x-\mu_i)^2/(2\sigma^2)} $$ More
+examples at [this
+hyperlink](https://www.statpower.net/Content/310/R%20Stuff/SampleMarkdown.html)
+
+## Embedding an image
+
+You might have saved some analysis from another program as a picture
+file. This is how you paste it: Let's embed a UTS logo, which I've saved
+to the `data` folder.
+
+```{r add_picture, echo=FALSE}
+#knitr::include_graphics(here::here("data", "uts_logo.png"))
+knitr::include_graphics(here::here("AT2_default_template/data/uts_logo.png"))
+
+```
+
+
+## Citations
+
+# References
+
+There are three ways for you to include references:
+
+1.  Just write them in, formatted in Harvard style.
+2.  Use footnotes 
+3.  Use a .bib file and cite like this [@greycite380215]
+
+You'll want to ensure that you connect what you did, and what you found, to the wider context of data science - including external sources of information (such as academic studies). You can build your reflection (criterion 4) through the paper like that. *Use external sources to _support_ and _contextualise_ your claims*, by giving examples of where things have gone wrong or worked well before, of relevant policies or systems, and of research into the potential, methods, and issues. 
+
+You'll need to work out how to cite...
+
+### knitcitations package
+
+You can use the `knitcitations` package to add citations by doi or url. 
+
+### Citing using a .bib file and citation manager
+
+If you create a .bib file, you can cite using [@Halpern_2006] - where your bib file has the 'key' (the bit after the @) with all the other detail. See the sample file!
+
+You can easily add packages you use to a .bib by modifying the function at the end of the template. 
+
+### Using footnotes - a good option especially if you get stuck with the others!
+
+If you're stuck we'll just accept footnotes for this assignment. To insert them you just type `^[This is a footnote.]`, you'll get a hyperlinked number and at the end of your document the list is automatically created! Pretty useful right? ^[This is a footnote, see how it auto appears at the end of the doc.]
+
+
+### Including quotations
+
+> This is a block quotation, if you have a long quote from someone this is the best way to do it (but don't forget the citation). This is a very long line that will still be quoted properly when it wraps. Oh boy let's keep writing to make sure this is long enough to actually wrap for everyone. Oh, you can *put* **Markdown** into a blockquote. 
+
+
+## Other formatting 
+
+You'll see that we can:
+
+ 1. Format things, e.g.
+ 
+  + *italicise*
+  + **or bold**
+  + **_or even bold italics_** (you can also have numbered sublists...)
+  
+    ...See the cheatsheet https://rmarkdown.rstudio.com/authoring_basics.html for more on this....to link to that by the way [I could have done this](https://rmarkdown.rstudio.com/authoring_basics.html)
+
+ 2. And add headings using a \# (but note, to get that to display properly I had to 'escape' it using a preceding backslash)
+ 3. And we can use citation, inline code, and charts
+ 4. All this means we can write a document, but we can also pull data in _live_ and  display it to the reader, who can also download this Rmd to see how we did it...it's pretty cool hey?
+
+But, just because it's in a different format, that doesn't mean you can get away with not following normal writing conventions. Writing should be in paragraphs, with correct spelling and grammar, and figures, etc. should be fully explained to the reader. For example, it's weird that I've just dumped Fig.1 image below, so in the methods, I'll make sure to explain them properly. (Note though, that this does illustrate how to include images - so if you do analysis outside R, you can still include figures, etc. without the code being R based)
+
+![Fig.1 A random logo image](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+
+
+## Equations (probably not useful, but just in case)
+
+If you want to insert equations (you probably don't) you can do so using the syntax below. You can also insert bits of inline code like, so the `2+2` here is produced by a piece of code, and the `r 2+2` is produced by an equation (namely `2+2`)
+
+The determinisstic part of the model is defined by this **in-line equation** as 
+$\mu_i = \beta_0 + \beta_1x$, and the stochastic part by the **centered equation**: 
+
+$$ \frac{1}{\sqrt{2\pi}\sigma}e^{-(x-\mu_i)^2/(2\sigma^2)} $$
+
+## Inline R output
+
+Of course, you don't have to just display the correlation, you can **_output the coefficient in-line with code: `r cor.test(as.numeric(mtcars$mpg),as.numeric(mtcars$qsec))$estimate[[1]]`_*
+
+
+# The template itself!
+
+In the other .Rmd file we'll start the template itself. 

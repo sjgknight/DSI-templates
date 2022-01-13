@@ -37,3 +37,9 @@ vignettes/*.pdf
 
 # R Environment Variables
 .Renviron
+
+# Ignore googledrive files
+.ini
+
+# Ignore logs created by pdftext
+.log
