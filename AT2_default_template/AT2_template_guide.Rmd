@@ -48,7 +48,7 @@ I have included the assessment criteria at the relevant places to remind you of 
 
 You are free to vary the structure by renaming the sections, including other sections, or dropping ones that you don't use. Keep in mind that the suggested structure is conventional (and therefore easy to follow), practical, and comprehensive. (Criterion 5: Professionally presented in a manner appropriate to the discipline.) If you do use this template, you will need to install R, RStudio, and the packages listed in the code block at the head of this document.
 
-Note: We have provided some sample code below, along with some text between angle brackets, \< \>. All of this should be replaced by your work.
+Note: We have provided some sample code below, along with some text mostly marked as blockquotes using \>. All of this should be replaced by your work.
 
 ***Please don't forget to include a title, name, student number, etc. on a covering sheet***
 
@@ -185,6 +185,7 @@ pacman::p_install_gh("hadley/emo") #install, but call functions directly. Largel
 
 ## Add timeline with linked headings here `r emo::ji("calendar")`
 
+
 # The Quantified Self
 
 <iframe src="https://embed.ted.com/talks/gary_wolf_the_quantified_self" data-external="1">
@@ -278,16 +279,60 @@ You might have saved some analysis from another program as a picture
 file. This is how you paste it: Let's embed a UTS logo, which I've saved
 to the `data` folder.
 
-```{r add_picture, echo=FALSE}
-#knitr::include_graphics(here::here("data", "uts_logo.png"))
-knitr::include_graphics(here::here("AT2_default_template/data/uts_logo.png"))
-
+```{r add_pic_inline, echo=FALSE, out.width="50px"}
+knitr::include_graphics(here::here("AT2_default_template/data/uts_logo_new.png"), dpi = NA)
 ```
 
+ Or like this: ![A logo](`r here::here("AT2_default_template/data/uts_logo_new.png")`){width=30%}
 
-## Citations
+## Tables
 
-# References
+To create tables either:
+
+* Use R functions to output table data (ideally formatted)
+* Include images of the table - this isn't ideal, but for this assignment it's fine
+* Use `markdown` per the examples below
+* Use `bootstrap` functions per the examples below
+
+### Markdown tables
+
+Markdown is fine for simple tables (but, you can't have merged cells, so here I've got two tables next to each). You can create these easily using the Visual editor in RStudio, or [tools like TablesGenerator](https://www.tablesgenerator.com/markdown_tables#).
+
+| *Data source:* Tweets made by each group member |
+|-------|
+| *Data structure:* JSON structured, but raw text, media (images), and URLs etc. require further processing for analysis. |
+
+| Row 1 | b1 | c1 | d1 |
+|-------|----|----|----|
+| Row 2 | b2 | c2 | d2 |
+
+
+#### Bootstrap layout
+
+You can use bootstrap to create complex layouts, here's a fairly simple example.
+
+:::: {style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;"}
+
+::: {}
+Here is the **first** Div.
+
+```{r}
+str(iris)
+```
+:::
+
+::: {}
+And this *second div* block will be put on the right:
+
+```{r}
+plot(iris[, -5])
+```
+:::
+
+::::
+
+
+## Citations and References
 
 There are three ways for you to include references:
 
@@ -314,12 +359,11 @@ You can easily add packages you use to a .bib by modifying the function at the e
 If you're stuck we'll just accept footnotes for this assignment. To insert them you just type `^[This is a footnote.]`, you'll get a hyperlinked number and at the end of your document the list is automatically created! Pretty useful right? ^[This is a footnote, see how it auto appears at the end of the doc.]
 
 
+## Other formatting 
+
 ### Including quotations
 
 > This is a block quotation, if you have a long quote from someone this is the best way to do it (but don't forget the citation). This is a very long line that will still be quoted properly when it wraps. Oh boy let's keep writing to make sure this is long enough to actually wrap for everyone. Oh, you can *put* **Markdown** into a blockquote. 
-
-
-## Other formatting 
 
 You'll see that we can:
 
@@ -329,16 +373,17 @@ You'll see that we can:
   + **or bold**
   + **_or even bold italics_** (you can also have numbered sublists...)
   
-    ...See the cheatsheet https://rmarkdown.rstudio.com/authoring_basics.html for more on this....to link to that by the way [I could have done this](https://rmarkdown.rstudio.com/authoring_basics.html)
+    ...See the [markdown cheatsheet]](https://rmarkdown.rstudio.com/authoring_basics.html) for more on this....to link ... we use \[description here\](http://urlhere.com).
 
  2. And add headings using a \# (but note, to get that to display properly I had to 'escape' it using a preceding backslash)
  3. And we can use citation, inline code, and charts
  4. All this means we can write a document, but we can also pull data in _live_ and  display it to the reader, who can also download this Rmd to see how we did it...it's pretty cool hey?
 
-But, just because it's in a different format, that doesn't mean you can get away with not following normal writing conventions. Writing should be in paragraphs, with correct spelling and grammar, and figures, etc. should be fully explained to the reader. For example, it's weird that I've just dumped Fig.1 image below, so in the methods, I'll make sure to explain them properly. (Note though, that this does illustrate how to include images - so if you do analysis outside R, you can still include figures, etc. without the code being R based)
+But, just because it's in a different format, that doesn't mean you can get away with not following normal writing conventions. Writing should be in paragraphs, with correct spelling and grammar, and figures, etc. should be fully explained to the reader. 
 
-![Fig.1 A random logo image](https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Logo Title Text 1")
+## Inline R output
 
+You can show full R chunks. But you might also write some output inline, e.g. *_output the coefficient in-line with code: `r cor.test(as.numeric(mtcars$mpg),as.numeric(mtcars$qsec))$estimate[[1]]`_*
 
 ## Equations (probably not useful, but just in case)
 
@@ -348,11 +393,6 @@ The determinisstic part of the model is defined by this **in-line equation** as
 $\mu_i = \beta_0 + \beta_1x$, and the stochastic part by the **centered equation**: 
 
 $$ \frac{1}{\sqrt{2\pi}\sigma}e^{-(x-\mu_i)^2/(2\sigma^2)} $$
-
-## Inline R output
-
-Of course, you don't have to just display the correlation, you can **_output the coefficient in-line with code: `r cor.test(as.numeric(mtcars$mpg),as.numeric(mtcars$qsec))$estimate[[1]]`_*
-
 
 # The template itself!
 

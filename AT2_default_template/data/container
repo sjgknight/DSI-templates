@@ -1,0 +1,31 @@
+.container {  display: grid;
+  grid-template-columns: 1.3fr 0.8fr 1fr 1fr;
+  grid-template-rows: 0.3fr 0.3fr 0.8fr 2.6fr;
+  gap: 3px 3px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "Top-row Top-row Top-row ."
+    "Second-row Second-row Second-row ."
+    "Var Dim Meth Freq"
+    "Var_data Dim_data Meth_data Freq_data";
+}
+
+.Top-row { grid-area: Top-row; }
+
+.Second-row { grid-area: Second-row; }
+
+.Var { grid-area: Var; }
+
+.Dim { grid-area: Dim; }
+
+.Meth {  display: grid; }
+
+.Freq { grid-area: Freq; }
+
+.Var_data { grid-area: Var_data; }
+
+.Dim_data { grid-area: Dim_data; }
+
+.Meth_data { grid-area: Meth_data; }
+
+.Freq_data { grid-area: Freq_data; }
