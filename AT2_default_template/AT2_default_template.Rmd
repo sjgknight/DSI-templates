@@ -24,9 +24,16 @@ link-citations: true
 
 ```{r setup, include=FALSE}
 #install.packages("pacman")
+#ignore this chunk
 library(pacman)
 p_load(bs4cards, tidyverse, here)
 
+```
+
+```{r global-options, include=FALSE}
+#ignore this chunk
+knitr::opts_chunk$set(fig.width=12, fig.height=8, fig.path='Figs/',
+                      echo=FALSE, warning=FALSE, message=FALSE)
 ```
 
 # Introduction
@@ -136,7 +143,16 @@ viz %>%
 
 ## Examples
 
-```{r analysis}
+You can see in the code chunk below that we read in a csv, and then create a visualisation (or, include a file image), and other statistical analyses. Here we're just outputing Figure \@ref(fig:basic-analysis), but you'd do more analysis (and discuss it properly in a paragraph).
+
+```{r basic-analysis, fig.cap="Read mtcars data and basic scatterplot.", echo=FALSE}
+
+mt_data <- readr::read_csv(readr_example("mtcars.csv"))
+
+mt_data %>% 
+  ggplot(aes(x = mpg, y = qsec)) +
+  geom_point()
+  
 
 ```
 
@@ -164,15 +180,9 @@ did it again; etc
 
 > Criterion 4 Strength of connection between the individual experience of this QS project to the practice of data science (and the preceding three criteria): When you're writing, think about both the specifics of your own analysis and insights, and what your work tells us about the wider practice and implications of data science, drawing on sources to contextualise and support your claims.
 
-# Professionally presented (criterion 5), and reflection (criterion 4)
+### Final conclusion
 
-Each criterion threads right through the report. This is especially true for `4` and `5`. I will especially look for reports that: 
-
-* Are creative, using novel approaches to the data and its analysis or representation; 
-* think about stakeholders including how to communicate to people who might be impacted by this data, privacy and ethics, implications for innovation (new tools/apps/policies), great visual communication, etc.;
-* engage with technical approaches. This doesn't have to mean coding amazing api pipelines, it could be exploring the range of publicly available GUI/demo services that might do interesting things with the data you've gathered.
-
-> Criterion 5 Level of professionalism in the presentation appropriate to the discipline: You can see specific guidance on this criterion in the subject outline. Remember, your visualisations, and the way you develop your narrative are a part of professional presentation. You should draw on external sources to support and contextualise your work throughout. Be careful to emphasise interpretation and analysis over description and narrative. So, don't tell us about discussions you had and who said what (description), tell us about the decisions you made, why, and their implications for the practice of data science (analysis).
+You might break the above sections into multiple subheadings. You can include a final conclusion (overall what you found, personally, about the data or QS, or about data science generally), but make sure it addresses the assessment criteria. 
 
 # Appendices {#AT2def_appendices}
 
@@ -216,6 +226,8 @@ Three approaches here:
 ## Packages used 
  
 ```{r packages, echo = FALSE, comment = NA, results = 'asis'}
+#If you leave this chunk as it is, as long as the libraries are installed it should work.
+
 library("RefManageR")
 #library("bibtex")
 knitr::write_bib(.packages(),  here::here("AT2_default_template/packages.bib"), tweak = TRUE) 

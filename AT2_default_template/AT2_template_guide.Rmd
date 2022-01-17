@@ -29,6 +29,12 @@ p_load(bs4cards, tidyverse, here)
 
 ```
 
+```{r global-options, include=FALSE}
+#ignore this chunk
+knitr::opts_chunk$set(fig.width=12, fig.height=8, fig.path='Figs/',
+                      echo=FALSE, warning=FALSE, message=FALSE)
+```
+
 # Your AT2 and using R Notebooks 
 
 Data scientists don't just use Word and Powerpoint to write. They also write live reports, that draw on real-time data to show visualisations alongside narratives. This type of writing can draw on APIs, databases, and local data to write text and conduct reproducible analysis of data for insights. One of the key tools to do this is 'notebooks'.
@@ -95,31 +101,33 @@ The preview shows you a rendered HTML copy of the contents of the editor. Conseq
 ## Read more about working with notebooks in R
 
 ```{r gallery-demo2}
-#Read more about R markdown and 'kniting' (rendering) documents https://rmarkdown.rstudio.com/authoring_quick_tour.html#overview 
 
-# How to install R and RStudio
-# How to use markdown
-# knitting documents
-# bookdown and yaml
-# fancier formatting 
-# blogdown if you want to get really fancy
+rintro <- tibble(
+  long_name = c("Install RStudio interactive","rmarkdown intro","DSI vignettes","rmarkdown detailed guide"),
+  blurb = c("Interactive learnr activity to setup RStudio, R, and packages","An introduction to R markdown","Check the DSI vignettes (and, via Canvas, exemplar reports) for inspiration","A longer book about how to use markdown with R"),
+  image_url = c("https://rstudio.github.io/learnr/logo.png","https://raw.githubusercontent.com/rstudio/rmarkdown/main/man/figures/logo.png","https://rstudio.github.io/learnr/logo.png","https://raw.githubusercontent.com/rstudio/rmarkdown/main/man/figures/logo.png"),
+  resource_url = c("https://learnr-examples.shinyapps.io/ex-setup-r/","https://rmarkdown.rstudio.com/authoring_quick_tour.html#overview","https://sjgknight.github.io/DSI/","https://bookdown.org/yihui/rmarkdown/markdown-syntax.html"),
+  tags = c("Get-started; learnr","Get-started; markdown","intermediate; analysis","advanced; markdown")
+)
 
-#tibble()
-
-
-galleries %>% 
+rintro %>% 
   cards(
     title = long_name,
     text = blurb,
-    link = gallery_url,
+    link = resource_url,
     image = image_url,
-    tags = paste("all;", paintbrushes),
+    tags = paste("all;", tags),
     width = 4,
-    footer = paintbrushes,
+    footer = tags,
     layout = "label-right"
   )
 
 ```
+
+
+<iframe src="https://player.vimeo.com/video/178485416?h=8a57bf9b88&color=428bca" width="640" height="400" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+<p><a href="https://vimeo.com/178485416">What is R Markdown?</a> from <a href="https://vimeo.com/rstudioinc">RStudio, Inc.</a> on <a href="https://vimeo.com">Vimeo</a>.</p>
+
 
 ## Setting the notebook up
 
@@ -133,26 +141,22 @@ The easiest way to work with it is to download the github repo and open the .Rpr
 
 ### Using projects in R
 
-
 It is best to set up your assignment as a project, rather than just have
 a single RMarkdown file. Setting up a project will define your working
 directory based on where a .RProj file is located. Other files and
 folders can then be found relative to that .RProj file. This gives
-projects some advantages: - It's easier to find your files, because you
-can set up subfolders with consistent names - You can refer to your data
-with relative referencing, eg `../datamy_data.csv`, rather than having
-to type `C:\folder\other_folder\data\my_data.csv`. - When you open your
-project, it unloads your libraries and clears your memory. That way, the
-libraries that you had loaded before won't get in the way of the one
-you're working on now. But when you close this project, it goes back to
-the state it was in before.
+projects some advantages: 
+
+* It's easier to find your files, because you can set up subfolders with consistent names 
+* You can refer to your data with relative referencing, eg `../datamy_data.csv`, rather than having to type `C:\folder\other_folder\data\my_data.csv`. 
+* When you open your project, it unloads your libraries and clears your memory. That way, the libraries that you had loaded before won't get in the way of the one you're working on now. But when you close this project, it goes back to the state it was in before.
 
 To start a project in RStudio, - click File -\> New Project and follow
-the prompts to set up a new project in a new folder. - Create subfolders
-called "R" and "data". - Save this template to the R folder, along with
-any other R code files you create on the project. - Save any data files
-(eg csv files, or screenshots from your other analysis) to the data
-folder.
+the prompts to set up a new project in a new folder. 
+
+1. Create subfolders called "R" and "data". 
+1. Save this template to the R folder, along with any other R code files you create on the project. 
+1. Save any data files (eg csv files, or screenshots from your other analysis) to the data folder.
 
 I highly recommend [this link on project-oriented workflow](https://www.tidyverse.org/articles/2017/12/workflow-vs-script/)
 
@@ -183,26 +187,92 @@ pacman::p_install_gh("hadley/emo") #install, but call functions directly. Largel
 
 ```
 
-## Add timeline with linked headings here `r emo::ji("calendar")`
+## Timeline for task `r emo::ji("calendar")`
 
+For formal timelines make sure you refer to (1) the subject outline (the most important document in any subject), (2) the subject canvas site+REVIEW both of which show deadlines, (3) if unsure, ask me. 
+
+```{r timeline}
+pacman::p_load(timevis)
+
+week_1 <- as.Date("2022-02-21")
+
+tl <- data.frame(
+  id      = 0:14,
+  long_content = c("Pre-work: What Does Facebook Know About Me?",
+              "Criterion 1: Choose group, data, and method. Establish communication approach and begin sharing data and insights.",
+              "Criterion 1: Justify collection and analysis. Be able to justify your approach 'for the method to obtain data from multiple sources, for gaining insight into a chosen problem, including analysis of data quality issues in the individual and group data' (Criterion 1) - draft this section in the template",
+              "Have data, share insight. Ensure you have a shared dataset in preparation for Mystery Box formative task; start to think about insights (criterion 2)",
+              "AT2a due. Group status update, and your preliminary thoughts on analysis and external (ideally scholarly) resources you're drawing on",
+              "Analysis and planning. Continue thinking about insights you might gain, visualisations you can use, issues (including ethical) with your data (criteria 2 and 3).  Review sample assignments and the AT2 template.",
+              "STUVAC HERE. Continue on AT2.",
+              "Consider issues in data. Focus on issues with your data (including ethical) (criteria 1-3) and their implications for the practice of data science (criterion 4)",
+              "Consider issues in data. Continue from week 7, with a particular focus on how comparing across the levels of data (individual, group, cohort) provides insights. Ensure you have considered the privacy and ethical issues throughout your report, and the implications of the project for the practice of data science",
+              "Week 9, draft submission of AT2b. See detailed instructions.",
+              "Week 10, review colleague's AT2b. Continue work on your own final submission",
+              "Week 11, review colleague's AT2b. Continue work on your own final submission",
+              "Week 12 AT2b feedback due. You should use that feedback to reflect on how to improve for your final submission",
+              "STUVAC. Continue AT2 work.",
+              "AT2C Due. Final assessment period."
+              )
+  )
+
+tl <- tl %>% mutate(start = week_1 + 7*id,
+                      end = start + 7,
+                    content = str_split_n(long_content, "\\.", 1))
+
+timevis(tl)
+#  X-WR-TIMEZONE = "Australia/Sydney"
+#library(calendar)
+tl %>% transmute(
+  DTSTART = as.POSIXct(.$start),
+  DTEND = as.POSIXct(.$end),
+  SUMMARY = content,
+  DESCRIPTION = long_content) %>%
+  mutate(UID = replicate(nrow(.), calendar::ic_guid())) %>%
+  calendar::ical() %>%
+  calendar::ic_write(.,"DSI_AT2.ics")
+
+```
+
+You should be able to download a calendar of events to import into your provider of choice. by clicking [on this ics calendar download](DSI_AT2.ics)
+
+## Professionally presented (criterion 5), and reflection (criterion 4)
+
+Each criterion threads right through the report. This is especially true for `4` and `5`. I will especially look for reports that: 
+
+* Are creative, using novel approaches to the data and its analysis or representation; 
+* think about stakeholders including how to communicate to people who might be impacted by this data, privacy and ethics, implications for innovation (new tools/apps/policies), great visual communication, etc.;
+* engage with technical approaches. This doesn't have to mean coding amazing api pipelines, it could be exploring the range of publicly available GUI/demo services that might do interesting things with the data you've gathered.
+
+> Criterion 5 Level of professionalism in the presentation appropriate to the discipline: You can see specific guidance on this criterion in the subject outline. Remember, your visualisations, and the way you develop your narrative are a part of professional presentation. You should draw on external sources to support and contextualise your work throughout. Be careful to emphasise interpretation and analysis over description and narrative. So, don't tell us about discussions you had and who said what (description), tell us about the decisions you made, why, and their implications for the practice of data science (analysis).
 
 # The Quantified Self
 
-<iframe src="https://embed.ted.com/talks/gary_wolf_the_quantified_self" data-external="1">
+<iframe src="https://embed.ted.com/talks/gary_wolf_the_quantified_self" data-external="1" width="280">
 
 </iframe>
 
-Old examples of this assignment, and all of our feedback given in a previous semester at <https://drive.google.com/drive/u/1/folders/1bxq1cISULLcmU7kRdadCg-RszVrBKGbA>
-
-You might find vignettes at <https://sjgknight.github.io/DSI/> helpful if you want to use R to do analysis (but remember, you do not have to)
-
 For AT2 you will collect, record, share, and analyse several types of data about yourself and compare and contrast what you find in your analysis with an analysis of the same data from the group. The following requirements apply to your data collection:
 
-Two sources of data negotiated with your group for sharing: Unstructured. One of which must be unstructured in nature (e.g. text, comments, images, audio, etc. You might obtain this from social media, email, slack, twitter, daily photos, etc.) - you may find the 'what does facebook know about you' materials useful for this. Your choice, structured or unstructured. The second source can be structured, drawing on one of the many examples provided. You are expected to individually collect one other data source of personal interest to you. This data does not need to be shared across the groups, but should be analysed by you in your report. External cohort-level data to compare your own data to (probably summary data from previously published work): The idea of this dataset is that you will have data from: (1) an individual, (2) a small group, and (3) a larger cohort. You will probably draw on published summary level data (for example, what is the average step count in Australia?...for who?), or publicly available stepcount data. For example, you may be able to obtain data from one of these sources: <http://openhumansfoundation.org/ohjh-example-notebooks/> <http://vhosts.eecs.umich.edu/vision//activity-dataset.html> interesting image dataset <http://quantifiedself.com/open-data/> <http://www.cs.vu.nl/~mhoogen/ml4qs/crowdsignals.zip> described <http://crowdsignals.io/> <http://www.cis.fordham.edu/wisdm/dataset.php> <http://www.cis.fordham.edu/wisdm/dataset.php#actitracker>
+1. Two sources of data negotiated with your group for sharing: 
+1.1 Unstructured. One of which must be unstructured in nature (e.g. text, comments, images, audio, etc. You might obtain this from social media, email, slack, twitter, daily photos, etc.) - you may find the 'what does facebook know about you' materials useful for this. You will need to work out a method to process this data.
+1.1 Your choice, structured or unstructured. The second source can be structured, drawing on one of the many examples provided. 
+1. You are expected to individually collect one other data source of personal interest to you. This data does not need to be shared across the groups, but should be analysed by you in your report. 
+1. External cohort-level data to compare your own data to (probably summary data from previously published work): The idea of this dataset is that you will have data from: (1) an individual, (2) a small group, and (3) a larger cohort. You will probably draw on published summary level data (for example, what is the average step count in Australia?...for who?), or publicly available stepcount data. For example, you may be able to obtain data from one of these sources:
 
-You will negotiate and agree a processes for recording, sharing and storing the data being collected as a group, in the on-campus briefing session for AT2. Your attendance at this session will be crucial in getting off to a strong start with a minimum of disruption for this major task.
+* [Open humans foundation](http://openhumansfoundation.org/ohjh-example-notebooks)
+* <http://vhosts.eecs.umich.edu/vision//activity-dataset.html> interesting image dataset 
+* <http://quantifiedself.com/open-data/>
+* <http://www.cs.vu.nl/~mhoogen/ml4qs/crowdsignals.zip> described <http://crowdsignals.io/> 
+* <http://www.cis.fordham.edu/wisdm/dataset.php> <http://www.cis.fordham.edu/wisdm/dataset.php#actitracker>
+
+You will negotiate and agree a processes for recording, sharing and storing the data being collected as a group, in the first class session for AT2. Your attendance at this session will be crucial in getting off to a strong start with a minimum of disruption for this major task.
 
 Examples of data that you and your group could collect include: daily step counts; pulse rates; time spent on activities each day (exercise, grooming, travelling, eating/cooking, shopping, sleeping studying, etc.); sleep patterns; daily spending; number & length of conversations each day; location tracking, and so on. Some of these can be easily tracked via smartphone apps, see examples at <https://quantifiedself.com/>
+
+Old examples of this assignment, and all of our feedback given in a previous semester are available via Canvas. 
+
+You might find [the DSI vignettes, many created by students in the Statistics subject](https://sjgknight.github.io/DSI/) helpful if you want to use R to do analysis (but remember, you do not have to!).
 
 ## AT2 components {.tabset .tabset-fade}
 
@@ -373,7 +443,7 @@ You'll see that we can:
   + **or bold**
   + **_or even bold italics_** (you can also have numbered sublists...)
   
-    ...See the [markdown cheatsheet]](https://rmarkdown.rstudio.com/authoring_basics.html) for more on this....to link ... we use \[description here\](http://urlhere.com).
+    ...See the [markdown cheatsheet](https://rmarkdown.rstudio.com/authoring_basics.html) for more on this....to link ... we use \[description here\](http://urlhere.com).
 
  2. And add headings using a \# (but note, to get that to display properly I had to 'escape' it using a preceding backslash)
  3. And we can use citation, inline code, and charts
@@ -397,3 +467,5 @@ $$ \frac{1}{\sqrt{2\pi}\sigma}e^{-(x-\mu_i)^2/(2\sigma^2)} $$
 # The template itself!
 
 In the other .Rmd file we'll start the template itself. 
+
+[^1] See
