@@ -8,104 +8,104 @@ DTSTART:20220221T110000
 DTEND:20220228T110000
 SUMMARY:Pre-work: What Does Facebook Know About Me?
 DESCRIPTION:Pre-work: What Does Facebook Know About Me?
-UID:ical-f7d31a35-ad83-48cd-820b-7e28b46085df
+UID:ical-b549af4d-0e4b-4ce9-977f-02380b4d2244
 END:VEVENT
 BEGIN:VEVENT
 DTSTART:20220228T110000
 DTEND:20220307T110000
 SUMMARY:Criterion 1: Choose group, data, and method
 DESCRIPTION:Criterion 1: Choose group, data, and method. Establish communication approach and begin sharing data and insights.
-UID:ical-43a901cf-9af1-4ecb-a24c-651a3881d1bc
+UID:ical-d794fec2-d2c8-4fe7-978a-a09af2f23885
 END:VEVENT
 BEGIN:VEVENT
 DTSTART:20220307T110000
 DTEND:20220314T110000
 SUMMARY:Criterion 1: Justify collection and analysis
 DESCRIPTION:Criterion 1: Justify collection and analysis. Be able to justify your approach 'for the method to obtain data from multiple sources, for gaining insight into a chosen problem, including analysis of data quality issues in the individual and group data' (Criterion 1) - draft this section in the template
-UID:ical-05d8996d-7e73-4103-9ae2-4cf15024962d
+UID:ical-2f14a852-2694-492f-b9e3-0325acdcb7ed
 END:VEVENT
 BEGIN:VEVENT
 DTSTART:20220314T110000
 DTEND:20220321T110000
 SUMMARY:Have data, share insight
 DESCRIPTION:Have data, share insight. Ensure you have a shared dataset in preparation for Mystery Box formative task; start to think about insights (criterion 2)
-UID:ical-1ac890f1-da58-4c8d-b323-da2be2d9851e
+UID:ical-1938695a-6b11-497f-9ae2-eae3552cb13e
 END:VEVENT
 BEGIN:VEVENT
 DTSTART:20220321T110000
 DTEND:20220328T110000
 SUMMARY:AT2a due
 DESCRIPTION:AT2a due. Group status update, and your preliminary thoughts on analysis and external (ideally scholarly) resources you're drawing on
-UID:ical-fc613577-a7b3-4dd5-945b-cd6554e23626
+UID:ical-66b78a3f-ee7f-48d7-ba4e-ba7a2076bcb9
 END:VEVENT
 BEGIN:VEVENT
 DTSTART:20220328T110000
 DTEND:20220404T100000
 SUMMARY:Analysis and planning
 DESCRIPTION:Analysis and planning. Continue thinking about insights you might gain, visualisations you can use, issues (including ethical) with your data (criteria 2 and 3).  Review sample assignments and the AT2 template.
-UID:ical-f66cc6d7-6b79-426e-a8b5-e83af7fb83e7
+UID:ical-25ba81d2-98ca-4ab1-a17a-20855a911887
 END:VEVENT
 BEGIN:VEVENT
 DTSTART:20220404T100000
 DTEND:20220411T100000
 SUMMARY:STUVAC HERE
 DESCRIPTION:STUVAC HERE. Continue on AT2.
-UID:ical-ab5f7942-e64c-49c1-9e55-9486bc406285
+UID:ical-02dee850-dd6e-4957-9f03-3aafda207b40
 END:VEVENT
 BEGIN:VEVENT
 DTSTART:20220411T100000
 DTEND:20220418T100000
 SUMMARY:Consider issues in data
 DESCRIPTION:Consider issues in data. Focus on issues with your data (including ethical) (criteria 1-3) and their implications for the practice of data science (criterion 4)
-UID:ical-011088fc-2ca4-4ad3-a302-9c3abc40bff3
+UID:ical-1cf3c336-aab3-4543-aeb5-6f01de9a0b94
 END:VEVENT
 BEGIN:VEVENT
 DTSTART:20220418T100000
 DTEND:20220425T100000
 SUMMARY:Consider issues in data
 DESCRIPTION:Consider issues in data. Continue from week 7, with a particular focus on how comparing across the levels of data (individual, group, cohort) provides insights. Ensure you have considered the privacy and ethical issues throughout your report, and the implications of the project for the practice of data science
-UID:ical-ff769fb8-f1de-404f-9e2d-f3d67b3d90bc
+UID:ical-9403a978-1c54-4855-b8e9-e1a051e16341
 END:VEVENT
 BEGIN:VEVENT
 DTSTART:20220425T100000
 DTEND:20220502T100000
 SUMMARY:Week 9, draft submission of AT2b
 DESCRIPTION:Week 9, draft submission of AT2b. See detailed instructions.
-UID:ical-74cc8122-21df-4253-9b89-043523bfc71d
+UID:ical-03f7fb8b-54ef-439d-b46e-6fe74df1a212
 END:VEVENT
 BEGIN:VEVENT
 DTSTART:20220502T100000
 DTEND:20220509T100000
 SUMMARY:Week 10, review colleague's AT2b
 DESCRIPTION:Week 10, review colleague's AT2b. Continue work on your own final submission
-UID:ical-bf04a72a-2ad0-4194-be6c-b78125127009
+UID:ical-5db6c5a0-594c-4428-ac98-3ac1c6231955
 END:VEVENT
 BEGIN:VEVENT
 DTSTART:20220509T100000
 DTEND:20220516T100000
 SUMMARY:Week 11, review colleague's AT2b
 DESCRIPTION:Week 11, review colleague's AT2b. Continue work on your own final submission
-UID:ical-e288d681-1afc-43e9-ad4c-eaf25b60d457
+UID:ical-a23512fe-494b-4990-a72f-49a54d053f66
 END:VEVENT
 BEGIN:VEVENT
 DTSTART:20220516T100000
 DTEND:20220523T100000
 SUMMARY:Week 12 AT2b feedback due
 DESCRIPTION:Week 12 AT2b feedback due. You should use that feedback to reflect on how to improve for your final submission
-UID:ical-d69e0030-8dd8-4934-9c17-f5318680ff8d
+UID:ical-efc9d636-5ae8-4575-a03f-b1c31245a2c8
 END:VEVENT
 BEGIN:VEVENT
 DTSTART:20220523T100000
 DTEND:20220530T100000
 SUMMARY:STUVAC
 DESCRIPTION:STUVAC. Continue AT2 work.
-UID:ical-3b6c4381-b198-4e54-9b7e-20d51530ee96
+UID:ical-cd76b0e4-a6ba-4e25-9545-a5611741f49d
 END:VEVENT
 BEGIN:VEVENT
 DTSTART:20220530T100000
 DTEND:20220606T100000
 SUMMARY:AT2C Due
 DESCRIPTION:AT2C Due. Final assessment period.
-UID:ical-9c38c469-baa6-4f18-bbee-9190cc815f50
+UID:ical-c50a068e-0d1d-4682-9187-2e95543deb0b
 END:VEVENT
 END:VCALENDAR

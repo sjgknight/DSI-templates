@@ -33,7 +33,9 @@ p_load(bs4cards, tidyverse, here)
 ```{r global-options, include=FALSE}
 #ignore this chunk
 knitr::opts_chunk$set(fig.width=12, fig.height=8, fig.path='Figs/',
-                      echo=FALSE, warning=FALSE, message=FALSE)
+                      echo=TRUE, warning=FALSE, message=FALSE)
+#don't print warnings or messages to output, but do include the code chunks (collapsed by default)
+
 ```
 
 # Introduction
@@ -88,7 +90,7 @@ and sharing of data within the group.
 
 > You should include your analysis here using R code, or by loading images and tables you've saved from other programs, like this. You'll see I set a pixel width for the first one.
 
-```{r add_pic_inline, echo=FALSE, out.width="50px"}
+```{r add_pic_inline, out.width="50px"}
 knitr::include_graphics(here::here("AT2_default_template/data/uts_logo_new.png"), dpi = NA)
 ```
 
@@ -106,7 +108,7 @@ there.
 
 > You must always cross reference your figures, never have a visualisation that is not explained explicitly in the text. See Figure \@ref(fig:cars-plot).
 
-```{r cars-plot, fig.cap="The cars data.", echo=FALSE}
+```{r cars-plot, fig.cap="The cars data."}
 par(mar = c(4, 4, .2, .1))
 plot(cars)  # a scatterplot
 ```
@@ -145,7 +147,7 @@ viz %>%
 
 You can see in the code chunk below that we read in a csv, and then create a visualisation (or, include a file image), and other statistical analyses. Here we're just outputing Figure \@ref(fig:basic-analysis), but you'd do more analysis (and discuss it properly in a paragraph).
 
-```{r basic-analysis, fig.cap="Read mtcars data and basic scatterplot.", echo=FALSE}
+```{r basic-analysis, fig.cap="Read mtcars data and basic scatterplot."}
 
 mt_data <- readr::read_csv(readr_example("mtcars.csv"))
 
@@ -204,12 +206,12 @@ You might break the above sections into multiple subheadings. You can include a 
 
 > You can download it and include it like this (play around with the settings to make it display sensibly). You can also include it as a html file, etc.
 
-```{r add_ODI_pdf, echo=FALSE, out.width="100%", out.height="500px"}
+```{r add_ODI_pdf, out.width="100%", out.height="500px"}
 knitr::include_graphics(here::here("AT2_default_template/data/DSI_copy_ODI_Data_Ethics_Canvas.pdf"))
 
 ```
 
-```{r add_ODI_html, echo=FALSE, out.width="100%", out.height="500px"}
+```{r add_ODI_html, out.width="100%", out.height="500px"}
 
 if(knitr::is_html_output()) knitr::include_url("https://docs.google.com/document/d/14qEn_yoOpInUAvA8ndNGMNuhxgywQJ3ODmCKcxYZPGQ/edit?usp=sharing")
 
@@ -225,7 +227,7 @@ Three approaches here:
 
 ## Packages used 
  
-```{r packages, echo = FALSE, comment = NA, results = 'asis'}
+```{r packages, comment = NA, results = 'asis'}
 #If you leave this chunk as it is, as long as the libraries are installed it should work.
 
 library("RefManageR")

@@ -32,7 +32,9 @@ p_load(bs4cards, tidyverse, here)
 ```{r global-options, include=FALSE}
 #ignore this chunk
 knitr::opts_chunk$set(fig.width=12, fig.height=8, fig.path='Figs/',
-                      echo=FALSE, warning=FALSE, message=FALSE)
+                      echo = TRUE, warning=FALSE, message=FALSE)
+#don't print warnings or messages to output, but do include the code chunks (collapsed by default)
+
 ```
 
 # Your AT2 and using R Notebooks 
@@ -62,7 +64,9 @@ Note: We have provided some sample code below, along with some text mostly marke
 
 1.  Complete self assessment on [REVIEW](https://uts.review-edu.com/uts)
 2.  Use the RMarkdown template to 'knit' a html file (by default html, you may use pdf, or knit to rich text if you really want, but I suggested you stick to html)
-3.  Upload to Canvas: 1.1 If you have used this template with defaults, just the html output. This should include the code links (if not, also upload your Rmd file. 1.1 If you have modified anything, then the HTML/PDF/.doc output and any associated directories (it may be necessary to zip this). In this case you will also need to share the raw .Rmd.
+3.  Upload to Canvas: 
+    - If you have used this template with defaults, just the html output. This should include the code links (if not, also upload your Rmd file. 
+    - If you have modified anything, then the HTML/PDF/.doc output and any associated directories (it may be necessary to zip this). In this case you will also need to share the raw .Rmd.
 
 You may also wish to share these on github or [rpubs](https://rpubs.com) - however, consider the privacy implications of doing so first.
 
@@ -220,7 +224,11 @@ tl <- tl %>% mutate(start = week_1 + 7*id,
                       end = start + 7,
                     content = str_split_n(long_content, "\\.", 1))
 
-timevis(tl)
+```
+
+`r timevis(tl)`
+
+```{r cal-create}
 #  X-WR-TIMEZONE = "Australia/Sydney"
 #library(calendar)
 tl %>% transmute(
@@ -252,21 +260,22 @@ Each criterion threads right through the report. This is especially true for `4`
 
 </iframe>
 
-For AT2 you will collect, record, share, and analyse several types of data about yourself and compare and contrast what you find in your analysis with an analysis of the same data from the group. The following requirements apply to your data collection:
-
-1. Two sources of data negotiated with your group for sharing: 
-1.1 Unstructured. One of which must be unstructured in nature (e.g. text, comments, images, audio, etc. You might obtain this from social media, email, slack, twitter, daily photos, etc.) - you may find the 'what does facebook know about you' materials useful for this. You will need to work out a method to process this data.
-1.1 Your choice, structured or unstructured. The second source can be structured, drawing on one of the many examples provided. 
-1. You are expected to individually collect one other data source of personal interest to you. This data does not need to be shared across the groups, but should be analysed by you in your report. 
-1. External cohort-level data to compare your own data to (probably summary data from previously published work): The idea of this dataset is that you will have data from: (1) an individual, (2) a small group, and (3) a larger cohort. You will probably draw on published summary level data (for example, what is the average step count in Australia?...for who?), or publicly available stepcount data. For example, you may be able to obtain data from one of these sources:
-
-* [Open humans foundation](http://openhumansfoundation.org/ohjh-example-notebooks)
-* <http://vhosts.eecs.umich.edu/vision//activity-dataset.html> interesting image dataset 
-* <http://quantifiedself.com/open-data/>
-* <http://www.cs.vu.nl/~mhoogen/ml4qs/crowdsignals.zip> described <http://crowdsignals.io/> 
-* <http://www.cis.fordham.edu/wisdm/dataset.php> <http://www.cis.fordham.edu/wisdm/dataset.php#actitracker>
+For AT2 you will collect, record, share, and analyse several types of data about yourself and compare and contrast what you find in your analysis with an analysis of the same data from the group. 
 
 You will negotiate and agree a processes for recording, sharing and storing the data being collected as a group, in the first class session for AT2. Your attendance at this session will be crucial in getting off to a strong start with a minimum of disruption for this major task.
+
+The following requirements apply to your data collection:
+
+1. *Two sources of data negotiated with your group* for sharing: 
+    - *Unstructured.* One of which must be unstructured in nature (e.g. text, comments, images, audio, etc. You might obtain this from social media, email, slack, twitter, daily photos, etc.) - you may find the 'what does facebook know about you' materials useful for this. You will need to work out a method to process this data.
+    - *Structured or unstructured.* The second source can be structured, drawing on one of the many examples provided. 
+1. *One additional individual dataset, structured or unstructured.* This can be of personal interest to you. It does not need to be shared across the groups, but should be analysed by you in your report. 
+1. *External cohort-level data* to compare your own data to (probably summary data from previously published work): The idea of this dataset is that you will have data from: (1) an individual, (2) a small group, and (3) a larger cohort. You will probably draw on published summary level data (for example, what is the average step count in Australia?...for who?), or publicly available stepcount data. In order of complexity, you may be able to obtain insights from one of these sources:
+
+    * Searching for your target variable on google or the library database (e.g. 'sleep, health, Australia'; 'average steps sydney', etc) *recommended approach*
+    * Some apps have public datasets, directly accessible publicly (e.g. Strava), or via platforms such as Kaggle
+    * [Open humans foundation](http://openhumansfoundation.org/ohjh-example-notebooks) - has a set of notebooks that demonstrate obtaining and processing data from different services
+    * If you're interested in data that might help us validate measures (e.g., how accurate smartwatch vs phone stepcounts are), (1) check the literature, and (2) datasets such as the wireless sensor data mining one <http://www.cis.fordham.edu/wisdm/dataset.php> or/and <http://crowdsignals.io/> may be of interest. 
 
 Examples of data that you and your group could collect include: daily step counts; pulse rates; time spent on activities each day (exercise, grooming, travelling, eating/cooking, shopping, sleeping studying, etc.); sleep patterns; daily spending; number & length of conversations each day; location tracking, and so on. Some of these can be easily tracked via smartphone apps, see examples at <https://quantifiedself.com/>
 
@@ -312,7 +321,7 @@ subscript~2~
 ### Headings
 
 Add headings using a \# (but note, to get that to display properly I had
-to 'escape' it using a preceding backslash). One \# gives you a line
+to 'escape' it using a preceding backslash \\\#). One \# gives you a line
 with Heading 1 style, \#\# gives you Heading 2 etc.
 
 ### Lists
@@ -325,35 +334,25 @@ with Heading 1 style, \#\# gives you Heading 2 etc.
 -   And so
 -   are bulleted lists
 
-More examples can be found [on the cheat sheet at this
-hyperlink](https://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf)
+More examples can be found [on the cheat sheet at this link](https://raw.githubusercontent.com/rstudio/cheatsheets/main/rmarkdown.pdf) (check website for versions in languages other than English)
 
 ### Equations
 
-If you want to insert equations (you probably don't) you can do so using
-the syntax below. You can also insert bits of inline code like, so the
-`2+2` here is produced by a piece of code, and the `r 2+2` is produced
-by an equation (namely `2+2`)
+If you want to insert equations (you probably don't) you can do so using the syntax below. You can also insert bits of inline code like, so the `2+2` here is produced by a piece of code, and the `r 2+2` is produced by an equation (namely `2+2`)
 
-The deterministic part of the model is defined by this **in-line
-equation** as $\mu_i = \beta_0 + \beta_1x$, and the stochastic part by
-the **centered equation**:
+The deterministic part of the model is defined by this **in-line equation** as $\mu_i = \beta_0 + \beta_1x$, and the stochastic part by the **centered equation**:
 
-$$ \frac{1}{\sqrt{2\pi}\sigma}e^{-(x-\mu_i)^2/(2\sigma^2)} $$ More
-examples at [this
-hyperlink](https://www.statpower.net/Content/310/R%20Stuff/SampleMarkdown.html)
+$$ \frac{1}{\sqrt{2\pi}\sigma}e^{-(x-\mu_i)^2/(2\sigma^2)} $$ More examples at [this link](https://www.statpower.net/Content/310/R%20Stuff/SampleMarkdown.html)
 
 ## Embedding an image
 
-You might have saved some analysis from another program as a picture
-file. This is how you paste it: Let's embed a UTS logo, which I've saved
-to the `data` folder.
+You might have saved some analysis from another program as a picture file. This is how you paste it: Let's embed a UTS logo, which I've saved to the `data` folder.
 
-```{r add_pic_inline, echo=FALSE, out.width="50px"}
+```{r add_pic_inline, out.width="50px"}
 knitr::include_graphics(here::here("AT2_default_template/data/uts_logo_new.png"), dpi = NA)
 ```
 
- Or like this: ![A logo](`r here::here("AT2_default_template/data/uts_logo_new.png")`){width=30%}
+Or like this: ![A logo](`r here::here("AT2_default_template/data/uts_logo_new.png")`){width=30%}
 
 ## Tables
 
@@ -381,7 +380,7 @@ Markdown is fine for simple tables (but, you can't have merged cells, so here I'
 
 You can use bootstrap to create complex layouts, here's a fairly simple example.
 
-:::: {style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 10px;"}
+:::: {style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 3px;"}
 
 ::: {}
 Here is the **first** Div.
@@ -414,20 +413,19 @@ You'll want to ensure that you connect what you did, and what you found, to the 
 
 You'll need to work out how to cite...
 
-### knitcitations package
+### Using footnotes - Easiest option, and acceptable for AT2, especially if you get stuck with the other options!
 
-You can use the `knitcitations` package to add citations by doi or url. 
+If you're stuck we'll just accept footnotes for this assignment. To insert them you just type `^[This is a footnote.]`, you'll get a hyperlinked number and at the end of your document the list is automatically created! Pretty useful right? ^[This is a footnote, see how it auto appears at the end of the doc.]
 
 ### Citing using a .bib file and citation manager
 
 If you create a .bib file, you can cite using [@Halpern_2006] - where your bib file has the 'key' (the bit after the @) with all the other detail. See the sample file!
 
-You can easily add packages you use to a .bib by modifying the function at the end of the template. 
+The packages you use are automatically added to a .bib and included in the template by the function at the end of the template. 
 
-### Using footnotes - a good option especially if you get stuck with the others!
+### knitcitations package
 
-If you're stuck we'll just accept footnotes for this assignment. To insert them you just type `^[This is a footnote.]`, you'll get a hyperlinked number and at the end of your document the list is automatically created! Pretty useful right? ^[This is a footnote, see how it auto appears at the end of the doc.]
-
+You can use the `knitcitations` package to add citations by doi or url. 
 
 ## Other formatting 
 
