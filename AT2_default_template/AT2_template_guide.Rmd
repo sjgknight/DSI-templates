@@ -25,7 +25,7 @@ link-citations: true
 ```{r setup, include=FALSE}
 #install.packages("pacman")
 library(pacman)
-p_load(bs4cards, tidyverse, here)
+p_load(bs4cards, tidyverse, here, emo, bslib)
 
 ```
 

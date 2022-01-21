@@ -26,7 +26,7 @@ link-citations: true
 #install.packages("pacman")
 #ignore this chunk
 library(pacman)
-p_load(bs4cards, tidyverse, here)
+p_load(bs4cards, tidyverse, here, bslib, emo)
 
 ```
 
