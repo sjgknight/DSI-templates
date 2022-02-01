@@ -82,6 +82,17 @@ To check this, you can either copy the html output to word, or use the addin Wor
 wordcountaddin:::text_stats()
 ```
 
+### Grammar and spelling in RStudio
+
+If you're using RStudio, you can still do grammar and spelling checks. The 'Visual editor' mode makes this more natural (ctrl+shift+f4 on windows). 
+
+The `gramr` package lets you run an open tool within RStudio to get this feedback. (you can explore the code [on github](https://github.com/jasdumas/gramr)).
+
+```{r echo=TRUE, message=F, warning=F}
+pacman::p_load_gh("ropenscilabs/gramr")
+```
+
+
 ## Introduction to R Notebooks
 
 <details>
@@ -207,9 +218,9 @@ tl <- data.frame(
               "Criterion 1: Justify collection and analysis. Be able to justify your approach 'for the method to obtain data from multiple sources, for gaining insight into a chosen problem, including analysis of data quality issues in the individual and group data' (Criterion 1) - draft this section in the template",
               "Have data, share insight. Ensure you have a shared dataset in preparation for Mystery Box formative task; start to think about insights (criterion 2)",
               "AT2a due. Group status update, and your preliminary thoughts on analysis and external (ideally scholarly) resources you're drawing on",
-              "Analysis and planning. Continue thinking about insights you might gain, visualisations you can use, issues (including ethical) with your data (criteria 2 and 3).  Review sample assignments and the AT2 template.",
-              "STUVAC HERE. Continue on AT2.",
+              "AT1 due. Analysis and planning. Continue thinking about insights you might gain, visualisations you can use, issues (including ethical) with your data (criteria 2 and 3).  Review sample assignments and the AT2 template.",
               "Consider issues in data. Focus on issues with your data (including ethical) (criteria 1-3) and their implications for the practice of data science (criterion 4)",
+                            "STUVAC HERE. Continue on AT2.",
               "Consider issues in data. Continue from week 7, with a particular focus on how comparing across the levels of data (individual, group, cohort) provides insights. Ensure you have considered the privacy and ethical issues throughout your report, and the implications of the project for the practice of data science",
               "Week 9, draft submission of AT2b. See detailed instructions.",
               "Week 10, review colleague's AT2b. Continue work on your own final submission",
@@ -465,5 +476,3 @@ $$ \frac{1}{\sqrt{2\pi}\sigma}e^{-(x-\mu_i)^2/(2\sigma^2)} $$
 # The template itself!
 
 In the other .Rmd file we'll start the template itself. 
-
-[^1] See
