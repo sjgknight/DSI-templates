@@ -1,0 +1,11 @@
+name: Publish Document
+title:
+username:
+account: rpubs
+server: rpubs.com
+hostUrl: rpubs.com
+appId: https://api.rpubs.com/api/v1/document/856255/5b3f57bdd7564350ad9ec2f5b1c9fa1c
+bundleId: https://api.rpubs.com/api/v1/document/856255/5b3f57bdd7564350ad9ec2f5b1c9fa1c
+url: http://rpubs.com/sjgknight/856255
+when: 1643677630.01325
+lastSyncTime: 1643677630.01325
