@@ -88,7 +88,7 @@ If you're using RStudio, you can still do grammar and spelling checks. The 'Visu
 
 The `gramr` package lets you run an open tool within RStudio to get this feedback. (you can explore the code [on github](https://github.com/jasdumas/gramr)).
 
-```{r echo=TRUE, message=F, warning=F}
+```{r echo=TRUE, message=FALSE, warning=FALSE}
 pacman::p_load_gh("ropenscilabs/gramr")
 ```
 
