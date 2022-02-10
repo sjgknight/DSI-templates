@@ -43,3 +43,6 @@ vignettes/*.pdf
 
 # Ignore logs created by pdftext
 .log
+.Rproj.user
+.Rdata
+.DS_Store
