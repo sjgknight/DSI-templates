@@ -39,7 +39,7 @@ vignettes/*.pdf
 .Renviron
 
 # Ignore googledrive files
-.ini
+*.ini
 
 # Ignore logs created by pdftext
 .log
