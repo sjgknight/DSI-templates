@@ -40,11 +40,7 @@ knitr::opts_chunk$set(fig.width=12, fig.height=8, fig.path='Figs/',
 
 # Introduction
 
-> this is where you give details about what you've been collecting and
-how much you data have; why you choose this data to collect; how you
-managed the quality and frequency of collection issues; what you did to
-anonymise or de-identify the data, and how you dealt with the storage
-and sharing of data within the group. 
+> this is where you give details about what you've been collecting and how much you data have; why you choose this data to collect; how you managed the quality and frequency of collection issues; what you did to anonymise or de-identify the data, and how you dealt with the storage and sharing of data within the group. 
 
 > Criterion 1: Strength of justification for the method to obtain data from multiple sources, for gaining insight into a chosen problem, including analysis of data quality issues in the individual and group data. Consider, do you tell the reader: 
 
@@ -54,17 +50,23 @@ and sharing of data within the group.
 
 ## Problem Definition: Understanding People And Data
 
+* What data you're collecting Why that data is interesting to collect
+
 > What are you exploring and why? 
 
 > How might data help inform this issue? What ethical and privacy considerations have you made (you should consider these throughout the report)?
 
 ## Data Understanding and Investigation
 
+* How you're collecting the data, justifying that method (evaluate the benefits/issues with the app or method you choose, etc.) 
+
 > What have you collected, how, and what are the issues with this method?
 
 > You _can_ include a simple table here to give an overview. But make sure you also explain the table, and connect what you have collected and the method to (1) the need or issues you're addressing, and (2) issues such as privacy, ethics, data quality, potential of data science vs other approaches, etc.
 
 ## Preparing the Data
+
+* What is the quality of the data you have (missing data, issues in the data, etc.) and implications.
 
 > What data cleaning, missing data, validation, etc. have you considered? What are the impacts of any issues in your data? 
 
